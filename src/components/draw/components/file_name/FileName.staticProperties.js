@@ -1,4 +1,4 @@
-import { palette } from "../../../../themes"
+import { paletteRGBA } from "../../../../themes"
 
 export const fileNameStaticProperties = {
     $display : 'flex',
@@ -7,7 +7,8 @@ export const fileNameStaticProperties = {
 
 export const fileNameInputStaticProperties = {
     $flexGrow : '1',
-    $focusBackgroundColor : palette.theme_1.surfaceHover,
+    $focusBackgroundColor : paletteRGBA().theme_1.primaryVariant,
     $hoverTextAlign : 'left',
     $focusTextAlign : 'left',
+    $focusOpacity : '1',
 }

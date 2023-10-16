@@ -1,23 +1,26 @@
-export const palette = {
-    theme_1 : {
-        primary : '#8D24AA',
-        primaryVariant : undefined,
-        onPrimary : '#FAFAFA',
-        
-        secondary : '#41AA24',
-        secondaryVariant : undefined,
-        onSecondary : '#FAFAFA',
+export const paletteRGBA = (alfa = 1) => {
+    const colors = {
+        theme_1 : {
+            primary : `rgba(31, 31, 31, ${alfa})`,
+            primaryVariant : `rgba(20, 20, 20, ${alfa})`,
+            onPrimary : `rgba(250, 250, 250, ${alfa})`,
+            
+            secondary : `rgba(141, 36, 70, ${alfa})`,
+            secondaryVariant : undefined,
+            onSecondary : `rgba(250, 250, 250, ${alfa})`,
 
-        error : undefined,
-        onError : undefined,
-        
-        background : '#212121',
-        onBackground : '#FAFAFA',
+            error : undefined,
+            onError : undefined,
+            
+            background : `rgba(24, 24, 24, ${alfa})`,
+            onBackground : `rgba(250, 250, 250, ${alfa})`,
 
-        surface : '#424242',
-        surfaceHover : '#121212',
-        onSurface : '#FAFAFA',
-    }
+            surface : `rgba(66, 66, 66, ${alfa})`,
+            onSurface : `rgba(250, 250, 250, ${alfa})`,
+        }
+    };
+
+    return colors;
 }
 
 export const size = {
@@ -48,7 +51,7 @@ export const duration = {
 export const transparency = {
     light : '0.85',
     medium : '0.5',
-    dark : '0.25'
+    dark : '0.05',
 }
 
 // export const themes = {}

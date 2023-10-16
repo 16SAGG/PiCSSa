@@ -3,26 +3,33 @@ import { template } from "clean-styled-components/src/styled-components/template
 import { flatHover } from "./flat.hover.styled.component"
 import { flatFocus } from "./flat.focus.styled.component"
 
-import { duration, palette, size, transparency } from "../../../themes"
+import { duration, paletteRGBA, size, transparency } from "../../../themes"
 
 export const flat = ({
     $flexGrow = undefined,
 
+    $gridColumn = undefined,
+    $gridRow = undefined,
+
     $minWidth = size.box,
+    $maxWidth = undefined,
+
+    $minHeight = size.box,
+    $maxHeight = undefined,
 
     $backgroundColor = 'transparent',
-    $hoverBackgroundColor = palette.theme_1.surfaceHover,
+    $hoverBackgroundColor = paletteRGBA().theme_1.primaryVariant,
     $focusBackgroundColor = undefined,
 
     $textAlign = 'center',
     $hoverTextAlign = undefined,
     $focusTextAlign = undefined,
 
-    $color = palette.theme_1.onBackground, 
+    $color = paletteRGBA().theme_1.onPrimary, 
 
-    $opacity = transparency.light,
+    $opacity = transparency.medium,
     $hoverOpacity = '1',
-    $focusOpacity = '1',
+    $focusOpacity = undefined,
 
     $borderStyle = 'none',
 
@@ -33,7 +40,14 @@ export const flat = ({
     return template({
         $flexGrow : $flexGrow,
 
+        $gridColumn : $gridColumn,
+        $gridRow : $gridRow,
+
         $minWidth : $minWidth,
+        $maxWidth : $maxWidth,
+
+        $minHeight : $minHeight,
+        $maxHeight : $maxHeight,
 
         $backgroundColor : $backgroundColor,
 
@@ -59,7 +73,9 @@ export const flat = ({
 
         $focusProperties : flatFocus({
             $focusBackgroundColor : $focusBackgroundColor,
+
             $focusOpacity : $focusOpacity,
+            
             $focusTextAlign : $focusTextAlign,
         })
     })
