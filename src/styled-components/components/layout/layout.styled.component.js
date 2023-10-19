@@ -1,4 +1,5 @@
 import { template } from "clean-styled-components/src/styled-components/template" 
+import { layoutHover } from "./layout.styled.hover.component"
 
 export const layout = ({
     $display = undefined,
@@ -14,9 +15,14 @@ export const layout = ({
     $alignItems = undefined,
     $justifyContent = undefined,
 
+    $opacity = undefined,
+    $hoverOpacity = undefined,
+
+    $width = undefined,
     $minHeight = undefined,
     $maxHeight = undefined,
 
+    $height = undefined,
     $minWidth = undefined,
     $maxWidth = undefined,
 
@@ -36,6 +42,8 @@ export const layout = ({
     $borderLeftWidth = undefined,
     $borderRightWidth = undefined,
 
+    $transitionDuration = undefined,
+
     $overflow = undefined,
 }) => {
     return template({
@@ -52,9 +60,13 @@ export const layout = ({
         $alignItems : $alignItems,
         $justifyContent : $justifyContent,
 
+        $opacity : $opacity,
+
+        $height : $height,
         $minHeight : $minHeight,
         $maxHeight : $maxHeight,
 
+        $width : $width,
         $minWidth : $minWidth,
         $maxWidth : $maxWidth,
 
@@ -74,6 +86,12 @@ export const layout = ({
         $borderLeftWidth : $borderLeftWidth,
         $borderRightWidth : $borderRightWidth,
 
+        $transitionDuration : $transitionDuration,
+
         $overflow : $overflow,
+
+        $hoverProperties : layoutHover ({
+            $hoverOpacity : $hoverOpacity,
+        })
     })
 }

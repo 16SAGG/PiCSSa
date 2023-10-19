@@ -1,6 +1,6 @@
 import { template } from "clean-styled-components/src/styled-components/template" 
 import { scrollScrollbar } from "./scroll.scrollBar.styled.component"
-import { duration, paletteRGBA, size, transparency } from "../../../themes"
+import {  paletteRGBA, size, transparency } from "../../../themes"
 import { scrollScrollBarThumb } from "./scroll.scrollBarThumb.styled.component"
 import { scrollScrollBarThumbHover } from "./scroll.scrollBarThumb.hover.styled.component"
 
@@ -19,6 +19,10 @@ export const scroll = ({
 
     $maxHeight = undefined,
 
+    $listStyleType = undefined,
+    $listStylePosition = undefined,
+    $listStyleImage = undefined,
+
     $scrollBarMaxWidth = `${parseFloat(size.box)/6}px`,
     
     $marginTop = '0px',
@@ -32,8 +36,8 @@ export const scroll = ({
     $paddingRight = '0px',
 
     $backgroundColor = 'transparent',
-    $backgroundColorScrollBarThumb = paletteRGBA(transparency.dark).theme_1.onPrimary,
-    $backgroundColorScrollBarThumbHover = paletteRGBA(transparency.medium).theme_1.onPrimary,
+    $scrollBarThumbBackgroundColor = paletteRGBA(transparency.dark).theme_1.onPrimary,
+    $scrollBarThumbHoverBackgroundColor = paletteRGBA(transparency.medium).theme_1.onPrimary,
 }) => {
     console.log($scrollBarMaxWidth)
     return template({
@@ -50,6 +54,10 @@ export const scroll = ({
         $overflow : $overflow,
     
         $maxHeight : $maxHeight,
+
+        $listStyleType : $listStyleType,
+        $listStylePosition : $listStylePosition,
+        $listStyleImage : $listStyleImage,
 
         $marginTop : $marginTop,
         $marginBottom : $marginBottom,
@@ -68,11 +76,11 @@ export const scroll = ({
         }),
 
         $scrollBarThumbProperties : scrollScrollBarThumb({
-            $backgroundColorScrollBarThumb : $backgroundColorScrollBarThumb,
+            $scrollBarThumbBackgroundColor : $scrollBarThumbBackgroundColor,
         }),
 
         $scrollBarThumbHoverProperties : scrollScrollBarThumbHover ({
-            $backgroundColorScrollBarThumbHover : $backgroundColorScrollBarThumbHover,
+            $scrollBarThumbHoverBackgroundColor : $scrollBarThumbHoverBackgroundColor,
         })
     })
 }

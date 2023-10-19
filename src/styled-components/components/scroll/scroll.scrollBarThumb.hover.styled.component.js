@@ -1,9 +1,9 @@
 import { template } from "clean-styled-components/src/styled-components/template" 
 
 export const scrollScrollBarThumbHover = ({
-    $backgroundColorScrollBarThumbHover= undefined
+    $scrollBarThumbHoverBackgroundColor = undefined
 }) => {
     return template({
-        $backgroundColor : $backgroundColorScrollBarThumbHover,
+        $backgroundColor : $scrollBarThumbHoverBackgroundColor,
     })
 }

@@ -48,6 +48,8 @@ export const leftColumnTopStaticProperties = {
 export const leftColumnBottomStaticProperties = {
     $display : 'flex',
     $minHeight : `${parseFloat(size.box) * 2 + parseFloat(size.gap)}px`,
+    $alignItems : 'center',
+    $justifyContent : 'center',
 }
 
 export const rightColumnStaticProperties = {
