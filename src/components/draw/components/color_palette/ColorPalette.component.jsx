@@ -6,13 +6,13 @@ import { colorButton } from '../../../../styled-components/components/colorButto
 import { layout } from '../../../../styled-components/components/layout/layout.styled.component';
 import { scroll } from '../../../../styled-components/components/scroll/scroll.styled.component';
 
-import { colorListStaticProperties, colorPaletteStaticProperties } from './ColorPalette.staticProperties';
+import { colorItemStaticProperties, colorListStaticProperties, colorPaletteStaticProperties } from './ColorPalette.staticProperties';
 
 export const ColorPalette = () =>{
 
     const colorPaletteProperties = layout(colorPaletteStaticProperties);
     const colorListProperties = scroll(colorListStaticProperties);
-    const colorItemProperties = colorButton({});
+    const colorItemProperties = colorButton(colorItemStaticProperties);
 
     return(
         <Section id = 'color-palette' $properties = {colorPaletteProperties}>

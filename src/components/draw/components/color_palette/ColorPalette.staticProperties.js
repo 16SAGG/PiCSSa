@@ -8,6 +8,14 @@ export const colorPaletteStaticProperties = {
 export const colorListStaticProperties = {
     $listStyleType : 'none',
     $alignItems : 'center',
-    $maxHeight : '478px',
+    $maxHeight : '76.68vh',
     $paddingRight : size.gap,
+}
+
+export const colorItemStaticProperties = {
+    $minHeight : `${parseFloat(size.box)/2}px`,
+    $maxHeight : `${parseFloat(size.box)/2}px`,
+    
+    $minWidth : `${parseFloat(size.box)/2}px`,
+    $maxWidth : `${parseFloat(size.box)/2}px`,
 }

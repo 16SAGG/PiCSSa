@@ -12,9 +12,14 @@ export const checkBoardContainer = ({
     $gridColumn = undefined,
     $gridRow = undefined,
 
+    $gridTemplateColumns =  undefined,
+    $gridTemplateRows = undefined,
+
+    $width = undefined,
     $minHeight = undefined,
     $maxHeight = undefined,
     
+    $height = undefined,
     $minWidth = undefined,
     $maxWidth = undefined,
 
@@ -47,9 +52,14 @@ export const checkBoardContainer = ({
         $gridColumn : $gridColumn,
         $gridRow : $gridRow,
         
+        $gridTemplateColumns : $gridTemplateColumns,
+        $gridTemplateRows : $gridTemplateRows,
+
+        $height : $height,
         $minHeight : $minHeight,
         $maxHeight : $maxHeight,
 
+        $width : $width,
         $minWidth : $minWidth,
         $maxWidth : $maxWidth,
 

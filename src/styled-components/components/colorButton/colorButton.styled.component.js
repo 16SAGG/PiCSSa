@@ -5,14 +5,16 @@ import { duration, paletteRGBA, size, transparency } from "../../../themes"
 import { colorButtonHover } from "./colorButton.styled.hover.component "
 
 export const colorButton = ({
-    $minHeight = `${parseFloat(size.box)/2}px`,
-    $maxHeight = `${parseFloat(size.box)/2}px`,
+    $minHeight = undefined,
+    $maxHeight = undefined,
     
-    $minWidth = `${parseFloat(size.box)/2}px`,
-    $maxWidth = `${parseFloat(size.box)/2}px`,
+    $minWidth =  undefined,
+    $maxWidth =  undefined,
 
     $opacity = transparency.medium,
     $hoverOpacity = undefined,
+
+    $borderStyle = 'none',
 
     $backgroundColor = paletteRGBA().theme_1.onPrimary,
 
@@ -26,6 +28,8 @@ export const colorButton = ({
         $maxWidth : $maxWidth,
 
         $opacity : $opacity,
+
+        $borderStyle : $borderStyle,
 
         $backgroundColor : $backgroundColor,
 

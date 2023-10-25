@@ -2,6 +2,7 @@ import { Div } from 'clean-styled-components/src/styled-components/elements/Div.
 import { Header } from 'clean-styled-components/src/styled-components/elements/Header.styled.element';
 import { Main } from 'clean-styled-components/src/styled-components/elements/Main.styled.element';
 
+import { scroll } from '../../styled-components/components/scroll/scroll.styled.component';
 import { layout } from '../../styled-components/components/layout/layout.styled.component';
 
 import { AnimationPreviewer } from './components/animation_previewer/AnimationPreviewer.component';
@@ -14,6 +15,7 @@ import { FileResize } from './components/file_resize/FileResize.component';
 import { FileReset } from './components/file_reset/FileReset.component';
 import { FileZoom } from './components/file_zoom/FileZoom.component';
 import { SelectedColors } from './components/selected_colors/SelectedColors.component';
+import { PixelArtCanvas } from './components/pixel_art_canvas/PixelArtCanvas.component';
 
 import { drawStaticProperties, headerStaticProperties, mainStaticProperties, leftColumnStaticProperties, rightColumnStaticProperties, centerColumnStaticProperties, leftColumnTopStaticProperties, leftColumnBottomStaticProperties } from './Draw.staticProperties';
 
@@ -29,7 +31,7 @@ export const Draw = () =>{
 
     const rightColumnProperties = layout(rightColumnStaticProperties);
 
-    const centerColumnProperties = layout(centerColumnStaticProperties);
+    const centerColumnProperties = scroll(centerColumnStaticProperties);
 
     return(
         <Div id = 'draw' $properties = {drawProperties}>
@@ -51,7 +53,7 @@ export const Draw = () =>{
                     </Div>
                 </Div>
                 <Div id = 'center-column' $properties = {centerColumnProperties}>
-
+                    <PixelArtCanvas/>
                 </Div>
                 <Div id = 'right-column' $properties = {rightColumnProperties}>
                     <AnimationPreviewer/>

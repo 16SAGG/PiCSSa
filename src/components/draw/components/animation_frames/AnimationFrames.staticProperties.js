@@ -9,7 +9,8 @@ export const animationFramesStaticProperties = {
 export const framesListStaticProperties = {
     $listStyleType : 'none',
     $alignItems : 'center',
-    $maxHeight : '232px',
+    $maxHeight : '37.06vh',
+    $gap : `${parseFloat(size.gap)*2}px`,
     $paddingLeft : `${parseFloat(size.gap)*4}px`,
 }
 

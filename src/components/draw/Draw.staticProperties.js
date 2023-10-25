@@ -5,6 +5,9 @@ export const drawStaticProperties = {
     $display : 'flex',
     $flexDirection : 'column',
     $minHeight : '100vh',
+    $maxHeight : '100vh',
+    $minWidth : '100vw',
+    $maxWidth : '100vw',
     $overflow : 'hidden',
     $backgroundColor : paletteRGBA().theme_1.background,
 }
@@ -25,6 +28,7 @@ export const mainStaticProperties = {
     $display : 'flex',
     $flexGrow : 1,
     $gap : size.gutter,
+    
 }
 
 export const leftColumnStaticProperties = {
@@ -68,4 +72,11 @@ export const rightColumnStaticProperties = {
 export const centerColumnStaticProperties = {
     $display : 'flex',
     $flexGrow : 1,
+    $alignItems : 'center',
+    $justifyContent : 'center',
+    $marginTop : size.gutter,
+    $marginBottom : size.gutter,
+    $maxHeight : '84.66vh',
+    $scrollBarMaxWidth : `${parseFloat(size.box)/4}px`,
+    $scrollBarMaxHeight : `${parseFloat(size.box)/4}px`,
 }

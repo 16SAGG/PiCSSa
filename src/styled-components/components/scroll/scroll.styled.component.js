@@ -1,8 +1,11 @@
 import { template } from "clean-styled-components/src/styled-components/template" 
+
+import { size } from "../../../themes"
+
 import { scrollScrollbar } from "./scroll.scrollBar.styled.component"
-import {  paletteRGBA, size, transparency } from "../../../themes"
 import { scrollScrollBarThumb } from "./scroll.scrollBarThumb.styled.component"
 import { scrollScrollBarThumbHover } from "./scroll.scrollBarThumb.hover.styled.component"
+import { scrollScrollBarCorner } from "./scroll.scrollBarCorner.styled.component"
 
 export const scroll = ({
     $display = 'flex',
@@ -12,18 +15,21 @@ export const scroll = ({
     $flexGrow = '1',
 
     $alignItems = undefined,
+    $justifyContent = undefined,
 
     $gap = size.gap,
     
     $overflow = 'auto',
 
+    $maxWidth = undefined,
     $maxHeight = undefined,
 
     $listStyleType = undefined,
     $listStylePosition = undefined,
     $listStyleImage = undefined,
 
-    $scrollBarMaxWidth = `${parseFloat(size.box)/6}px`,
+    $scrollBarMaxWidth = undefined,
+    $scrollBarMaxHeight = undefined,
     
     $marginTop = '0px',
     $marginBottom = '0px',
@@ -36,10 +42,10 @@ export const scroll = ({
     $paddingRight = '0px',
 
     $backgroundColor = 'transparent',
-    $scrollBarThumbBackgroundColor = paletteRGBA(transparency.dark).theme_1.onPrimary,
-    $scrollBarThumbHoverBackgroundColor = paletteRGBA(transparency.medium).theme_1.onPrimary,
+    $scrollBarCornerBackgroundColor = undefined,
+    $scrollBarThumbBackgroundColor = undefined,
+    $scrollBarThumbHoverBackgroundColor = undefined,
 }) => {
-    console.log($scrollBarMaxWidth)
     return template({
         $display : $display,
 
@@ -48,11 +54,13 @@ export const scroll = ({
         $flexGrow : $flexGrow,
 
         $alignItems : $alignItems,
+        $justifyContent : $justifyContent,
 
         $gap : $gap,
         
         $overflow : $overflow,
     
+        $maxWidth : $maxWidth,
         $maxHeight : $maxHeight,
 
         $listStyleType : $listStyleType,
@@ -73,6 +81,11 @@ export const scroll = ({
 
         $scrollBarProperties : scrollScrollbar({
             $scrollBarMaxWidth : $scrollBarMaxWidth,
+            $scrollBarMaxHeight : $scrollBarMaxHeight,
+        }),
+
+        $scrollBarCornerProperties : scrollScrollBarCorner({
+            $scrollBarCornerBackgroundColor : $scrollBarCornerBackgroundColor,
         }),
 
         $scrollBarThumbProperties : scrollScrollBarThumb({
