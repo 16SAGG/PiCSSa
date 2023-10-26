@@ -9,7 +9,6 @@ export const canvasStaticProperties = ({
     $gridTemplateColumns = `repeat(${$columnsCount}, ${$pixelSize})`,
     $gridTemplateRows = `repeat(${$rowsCount}, ${$pixelSize})`,
     $opacity = '1',
-    //touchAction = 'none'
 }) =>{
     const result = {
         $display : $display,

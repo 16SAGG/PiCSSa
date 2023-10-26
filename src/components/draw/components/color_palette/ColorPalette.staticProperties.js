@@ -1,4 +1,4 @@
-import { size } from "../../../../themes"
+import { duration, size } from "../../../../themes"
 
 export const colorPaletteStaticProperties = {
     $display : 'flex',
@@ -12,10 +12,20 @@ export const colorListStaticProperties = {
     $paddingRight : size.gap,
 }
 
-export const colorItemStaticProperties = {
-    $minHeight : `${parseFloat(size.box)/2}px`,
-    $maxHeight : `${parseFloat(size.box)/2}px`,
+export const colorItemStaticProperties = ({
+    $backgroundColor = undefined,
+}) => {
+    const result = {
+        $backgroundColor : $backgroundColor,
+
+        $minHeight : `${parseFloat(size.box)/2}px`,
+        $maxHeight : `${parseFloat(size.box)/2}px`,
     
-    $minWidth : `${parseFloat(size.box)/2}px`,
-    $maxWidth : `${parseFloat(size.box)/2}px`,
+        $minWidth : `${parseFloat(size.box)/2}px`,
+        $maxWidth : `${parseFloat(size.box)/2}px`,
+
+        $transitionDuration : duration.fast,
+    }
+
+    return result
 }

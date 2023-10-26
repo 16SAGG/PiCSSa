@@ -11,14 +11,15 @@ export const colorButton = ({
     $minWidth =  undefined,
     $maxWidth =  undefined,
 
-    $opacity = transparency.medium,
-    $hoverOpacity = undefined,
-
     $borderStyle = 'none',
 
     $backgroundColor = paletteRGBA().theme_1.onPrimary,
+    $hoverBackgroundColor = ($backgroundColor === 'transparent') ? '#fff' : undefined,
 
-    $transitionDuration = duration.fast,
+    $opacity = transparency.medium,
+    $hoverOpacity = ($backgroundColor === 'transparent') ? transparency.medium : undefined,
+
+    $transitionDuration = undefined,
 }) => {
     return template({
         $minHeight : $minHeight,
@@ -36,6 +37,7 @@ export const colorButton = ({
         $transitionDuration : $transitionDuration,
 
         $hoverProperties : colorButtonHover({
+            $hoverBackgroundColor : $hoverBackgroundColor,
             $hoverOpacity : $hoverOpacity,
         })
     })

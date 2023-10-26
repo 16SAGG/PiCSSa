@@ -1,12 +1,15 @@
 import { create } from "zustand";
 
-export const useCanvasStore = create((set) =>({
-    pixelSize : '48px',
+export const useCanvasStore = create((set, get) =>({
+    pixelSize : '24px',
 
-    columnsCount : 8,
-    rowsCount : 8,
+    columnsCount : 16,
+    rowsCount : 16,
 
-    pointerPressed : false,
+    pointer: {
+        pressed : false,
+        button : -1,
+    },
 
     setPixelSize : (newSize) =>{
         const strNewSize = `${newSize}px`
@@ -21,7 +24,12 @@ export const useCanvasStore = create((set) =>({
         set({rowsCount : newCount})
     },
 
-    setPointerPressed : (value) =>{
-        set({pointerPressed : value})
+    setPointer : ({pressed, button}) =>{
+        const newPointer = {
+            pressed,
+            button
+        }
+
+        set({pointer : newPointer})
     }
 }))

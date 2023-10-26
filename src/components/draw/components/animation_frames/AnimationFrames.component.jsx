@@ -20,9 +20,11 @@ import { FrameItem } from "./components/frame_item/FrameItem.component";
 
 export const AnimationFrames = () =>{
     const newFrame = useFramesStore(state => state.newFrame)
-    
     const columnsCount = useCanvasStore(state => state.columnsCount)
     const rowsCount = useCanvasStore(state => state.rowsCount)
+    useEffect(() => {
+        newFrame({columnsCount, rowsCount})
+    }, []);
 
     const animationFramesProperties = layout(animationFramesStaticProperties);
     const framesListProperties = scroll(framesListStaticProperties);

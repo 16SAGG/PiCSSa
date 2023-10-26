@@ -4,7 +4,7 @@ import { createArray } from "../utilities/createArray";
 
 export const useFramesStore = create((set, get) =>({
     currentFrame : 0,
-    framesList : [createArray({})],
+    framesList : [],
 
     newFrame : ({columnsCount = 8, rowsCount = 8}) =>{
         const newFrame = createArray({columnsCount, rowsCount}, 'transparent')
@@ -17,23 +17,9 @@ export const useFramesStore = create((set, get) =>({
         if (!isActive) return
         
         const { currentFrame, framesList } = get()
+
+        framesList[currentFrame][coordY][coordX] = newColor
         
-        const editFrame = framesList[currentFrame].map((row, indexY) =>{
-            return row.map((pixelColor, indexX) =>{
-                const itsThePixelThatWeWillChange = `${indexX}: ${indexY}` === `${coordX}: ${coordY}`
-                
-                if (itsThePixelThatWeWillChange) return newColor
-                return pixelColor
-            })
-        })
-
-        const updateFrames = framesList.map((frame) =>{
-            const itsTheFrameThatWeWillEdit = framesList[currentFrame] === frame
-            
-            if (itsTheFrameThatWeWillEdit) return editFrame
-            return frame
-        })
-
-        set({framesList : updateFrames})
+        set({framesList})
     }
 }))
