@@ -12,14 +12,4 @@ export const useFramesStore = create((set, get) =>({
 
         set({ framesList : framesList.concat([newFrame])})
     },
-
-    editPixel : (isActive = false, {coordX = 0, coordY = 0}, newColor = 'transparent') =>{
-        if (!isActive) return
-        
-        const { currentFrame, framesList } = get()
-
-        framesList[currentFrame][coordY][coordX] = newColor
-        
-        set({framesList})
-    }
 }))
