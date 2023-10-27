@@ -9,9 +9,7 @@ import { canvasStaticProperties } from './PixelArtCanvas.staticProperties';
 import { Pixel } from './components/Pixel.component';
 
 export const PixelArtCanvas = () =>{
-    const pixelSize = useCanvasStore(state => state.pixelSize)
-    const columnsCount = useCanvasStore(state => state.columnsCount)
-    const rowsCount = useCanvasStore(state => state.rowsCount)
+    const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
     const setPointer = useCanvasStore(state => state.setPointer)
 
     const framesList = useFramesStore(state => state.framesList)
@@ -19,11 +17,11 @@ export const PixelArtCanvas = () =>{
     const frameInfo = (framesList[currentFrame]) ? framesList[currentFrame] : [[]]
     
     const canvasProperties = checkBoardContainer(canvasStaticProperties({
-        $pixelSize : pixelSize,
-        $columnsCount : columnsCount,
-        $rowsCount : rowsCount,
+        $pixelSize : canvasDimensions.pixelSize,
+        $columnsCount : canvasDimensions.columnsCount,
+        $rowsCount : canvasDimensions.rowsCount,
     }));
-
+    
     return(
         <Section 
             id = 'canvas' 
@@ -33,10 +31,10 @@ export const PixelArtCanvas = () =>{
             $properties = {canvasProperties}
         >
             {frameInfo.map((row, indexY) => (
-                row.map((pixelColor, indexX) => (
+                row.map((pixelBackgroundColor, indexX) => (
                     <Pixel
                         key = {`${indexX}: ${indexY}`}
-                        pixelColor = {pixelColor}
+                        externalBackgroundColor = {pixelBackgroundColor}
                     />
                 ))
             ))}

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import PropTypes from 'prop-types';
 
 import { Button } from 'clean-styled-components/src/styled-components/elements/Button.styled.element';
 
@@ -8,30 +9,32 @@ import { useColorsStore } from "../../../../../store/colors.store"
 import { getColorInUse } from "../../../../../utilities/getColorInUse"
 
 import { colorButton } from "../../../../../styled-components/components/colorButton/colorButton.styled.component"
-import { useEffect } from "react";
+import { useEffect } from "react"
 
 
-export const Pixel = ({pixelColor}) =>{
+export const Pixel = ({externalBackgroundColor}) =>{
     const [backgroundColor, setBackgroundColor] = useState('')
 
     useEffect(() =>{
-        setBackgroundColor(pixelColor)
-    }, [pixelColor])
+        setBackgroundColor(externalBackgroundColor)
+    }, [externalBackgroundColor])
+
+    const localBackgroundColorUpdate = (itCanBeUpdated, newBackgroundColor) => () =>{
+        if (itCanBeUpdated) setBackgroundColor(newBackgroundColor)
+    }
 
     const pointer = useCanvasStore(state => state.pointer)
     const currentColors = useColorsStore(state => state.currentColors)
 
-    const editPixel = (isActive, newBackgroundColor) => () =>{
-        if (!isActive) return
-
-        setBackgroundColor(newBackgroundColor)
-    }
-
     return(
         <Button
-            onPointerDown = {editPixel(true, getColorInUse(currentColors, pointer.button))}
-            onPointerOver = {editPixel(pointer.pressed, getColorInUse(currentColors, pointer.button))}
+            onPointerDown = {localBackgroundColorUpdate(true, getColorInUse(currentColors, pointer.button))}
+            onPointerOver = {localBackgroundColorUpdate(pointer.pressed, getColorInUse(currentColors, pointer.button))}
             $properties = {colorButton({$backgroundColor : backgroundColor})}
         ></Button>
     )
+}
+
+Pixel.propTypes = {
+    externalBackgroundColor: PropTypes.string,
 }

@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { Button } from 'clean-styled-components/src/styled-components/elements/Button.styled.element';
 import { Section } from 'clean-styled-components/src/styled-components/elements/Section.styled.element';
 import { Ul } from 'clean-styled-components/src/styled-components/elements/Ul.styled.element';
@@ -14,14 +12,16 @@ import { scroll } from '../../../../styled-components/components/scroll/scroll.s
 import { colorItemStaticProperties, colorListStaticProperties, colorPaletteStaticProperties } from './ColorPalette.staticProperties';
 
 export const ColorPalette = () =>{
-    const fetchPalettes = useColorsStore(state => state.fetchPalettes)
-    useEffect(() => {
-        fetchPalettes()
-    }, []);
-    
+    const palettesList = useColorsStore(state => state.palettesList)
+    const fetchPalettesList = useColorsStore(state => state.fetchPalettesList)
     const currentPalette = useColorsStore(state => state.currentPalette)
-    const palettes = useColorsStore(state => state.palettes)
-    const paletteColors = (palettes[currentPalette]) ? palettes[currentPalette].colors : []
+
+    const palettesListIsEmpty = palettesList.length === 0
+    if (palettesListIsEmpty) {
+        fetchPalettesList()
+    }
+
+    const paletteColors = (palettesList[currentPalette]) ? palettesList[currentPalette].colors : []
     
     const setCurrentColors = useColorsStore(state => state.setCurrentColors) 
 
@@ -31,12 +31,12 @@ export const ColorPalette = () =>{
     return(
         <Section id = 'color-palette' $properties = {colorPaletteProperties}>
             <Ul 
-                id = 'color-list'
+                id = 'palette-colors'
                 onContextMenu = {(event) => event.preventDefault()}
                 $properties = {colorListProperties}
             >
                 {paletteColors.map((color, index) => (
-                    <Li name = {`color ${index}`} key = {index}>
+                    <Li key = {index}>
                         <Button
                             onPointerDown = {(event) => setCurrentColors(event.button, color)}
                             $properties = {colorButton(colorItemStaticProperties({$backgroundColor : color}))}

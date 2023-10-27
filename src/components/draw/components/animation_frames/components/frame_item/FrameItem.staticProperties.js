@@ -9,35 +9,46 @@ export const frameItemStaticProperties = {
     $minWidth : `${parseFloat(size.box)*4}px`
 }
 
-export const frameOptionsStaticProperties = {
+export const columnsWrapperStaticProperties = {
     $display : 'flex',
     $minWidth : `${parseFloat(size.box)*2}px`,
     $backgroundColor : paletteRGBA().theme_1.primaryVariant,
 }
 
-export const frameNumberContainerStaticProperties = {
+export const IDContainerStaticProperties = {
     $display : 'flex',
     $flexGrow : '1',
     $alignItems : 'center',
     $justifyContent : 'center',
 }
 
-export const frameButtonsContainerStaticProperties = {
+export const buttonsContainerStaticProperties = {
     $display : 'flex',
     $flexDirection : 'column',
     $minWidth : `${parseFloat(size.box)/2}px`,
 }
 
-export const frameButtonStaticProperties = {
+export const buttonStaticProperties = {
     $backgroundColor : paletteRGBA().theme_1.primary,
     $flexGrow : '1',
     $minWidth : '0px',
     $minHeight : '0px',
 }
 
-export const frameContentStaticProperties = {
-    $flexGrow : '1',
-    $borderStyle : 'solid',
-    $borderColor : paletteRGBA().theme_1.primaryVariant,
-    $opacity : '1'
+export const contentStaticProperties = ({
+    $flexGrow = '1',
+    $borderStyle = 'solid',
+    $borderColor = paletteRGBA().theme_1.primaryVariant,
+    $opacity = '1',
+    $hoverOpacity = undefined,
+}) =>{
+    const result = {
+        $flexGrow : $flexGrow,
+        $borderStyle : $borderStyle,
+        $borderColor : $borderColor,
+        $opacity : $opacity,
+        $hoverOpacity : $hoverOpacity,
+    }
+
+    return result
 }

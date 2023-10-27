@@ -2,18 +2,18 @@ import { create } from "zustand";
 
 export const useColorsStore = create((set, get) =>({
     currentPalette : 0,
-    palettes : [],
+    palettesList : [],
 
     currentColors : {
         primary : "#000",
         secondary : "transparent",
     },
 
-    fetchPalettes : async () =>{
+    fetchPalettesList : async () =>{
         const res = await fetch(`http://localhost:5173/palettes.data.json`)
-        const palettes = await res.json()
+        const palettesList = await res.json()
 
-        set({palettes})
+        set({palettesList})
     },
 
     setCurrentColors : (keyInput, newColor) =>{

@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus} from '@fortawesome/free-solid-svg-icons'
 
@@ -19,12 +17,16 @@ import { addFrameButtonStaticProperties, animationFramesStaticProperties, frames
 import { FrameItem } from "./components/frame_item/FrameItem.component";
 
 export const AnimationFrames = () =>{
-    const newFrame = useFramesStore(state => state.newFrame)
-    const columnsCount = useCanvasStore(state => state.columnsCount)
-    const rowsCount = useCanvasStore(state => state.rowsCount)
-    useEffect(() => {
-        newFrame({columnsCount, rowsCount})
-    }, []);
+    const createNewFrame = useFramesStore(state => state.createNewFrame)
+    const framesList = useFramesStore(state => state.framesList)
+    const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
+    const currentFrame = useFramesStore(state => state.currentFrame)
+
+    const framesListIsEmpty = framesList.length === 0
+    if (framesListIsEmpty) return createNewFrame({
+        columnsCount : canvasDimensions.columnsCount, 
+        rowsCount : canvasDimensions.rowsCount,
+    })
 
     const animationFramesProperties = layout(animationFramesStaticProperties);
     const framesListProperties = scroll(framesListStaticProperties);
@@ -33,16 +35,24 @@ export const AnimationFrames = () =>{
     return(
         <Section id = 'animation-frames' $properties = {animationFramesProperties}>
             <Ul id = 'frames-list' $properties = {framesListProperties}>
-                <FrameItem/>
-                <FrameItem/>
-                <FrameItem/>
-                <FrameItem/>
-                <FrameItem/>
-                <FrameItem/>
-                <FrameItem/>
-                <FrameItem/>
+                {framesList.map((frameContent, index) => (
+                    <FrameItem 
+                        key = {index}
+                        frameID = {index}
+                        isTheCurrentFrame = {currentFrame === index}
+                    />
+                ))}
             </Ul>
-            <Button $properties = {addFrameButtonProperties} onClick = {() => newFrame({columnsCount, rowsCount})}>
+
+            <Button
+                onClick = {() =>
+                    createNewFrame({
+                        columnsCount : canvasDimensions.columnsCount, 
+                        rowsCount : canvasDimensions.rowsCount
+                    })
+                }
+                $properties = {addFrameButtonProperties} 
+            >
                 <FontAwesomeIcon icon={faPlus} transform = "grow-10"/>
             </Button>
         </Section>
