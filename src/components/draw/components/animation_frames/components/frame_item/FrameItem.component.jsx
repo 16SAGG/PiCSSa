@@ -13,7 +13,7 @@ import { text } from '../../../../../../styled-components/components/text/text.s
 import { iconButton } from '../../../../../../styled-components/components/iconButton/iconButton.styled.component';
 
 import { buttonsContainerStaticProperties, buttonStaticProperties, contentStaticProperties, frameItemStaticProperties, IDContainerStaticProperties, columnsWrapperStaticProperties } from './FrameItem.staticProperties';
-import { paletteRGBA, transparency } from '../../../../../../themes';
+import { paletteRGBA, transparency} from '../../../../../../themes';
 
 export const FrameItem = ({frameID, isTheCurrentFrame}) =>{
 
@@ -21,17 +21,21 @@ export const FrameItem = ({frameID, isTheCurrentFrame}) =>{
     
     const columnsWrapperProperties = layout(columnsWrapperStaticProperties);
     
-    const IDContainerProperties = layout(IDContainerStaticProperties);
-    const IDProperties = text({});
+    const IDContainerProperties = layout(IDContainerStaticProperties({
+        $backgroundColor : (isTheCurrentFrame) ? paletteRGBA().theme_1.secondary : undefined
+    }));
+
+    const IDProperties = text({
+        $color : (isTheCurrentFrame) ? paletteRGBA().theme_1.onSecondary : undefined
+    });
     
     const buttonsContainerProperties = layout(buttonsContainerStaticProperties);
-    const buttonProperties = iconButton(buttonStaticProperties);
-
-    const contentProperties = checkBoardContainer(contentStaticProperties({
-        $borderColor : (isTheCurrentFrame) ? paletteRGBA('1').theme_1.onPrimary : undefined,
-        $opacity : (isTheCurrentFrame) ? transparency.medium : undefined,
-        $hoverOpacity : (isTheCurrentFrame) ? transparency.medium : undefined,
+    const buttonProperties = iconButton(buttonStaticProperties({
+        $color : (isTheCurrentFrame) ? paletteRGBA().theme_1.secondary : undefined,
+        $backgroundColor : (isTheCurrentFrame) ? paletteRGBA(transparency.medium).theme_1.primary : undefined,
     }));
+
+    const contentProperties = checkBoardContainer(contentStaticProperties);
 
     return(
         <Li $properties = {frameItemProperties}>

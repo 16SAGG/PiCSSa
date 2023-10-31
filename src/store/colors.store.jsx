@@ -20,7 +20,8 @@ export const useColorsStore = create((set, get) =>({
         const {currentColors} = get()
         const newCurrentColors = structuredClone(currentColors)
         
-        if (keyInput === 0) newCurrentColors.primary = newColor
+        const buttonPressedWasLeftClick = keyInput === 0
+        if (buttonPressedWasLeftClick) newCurrentColors.primary = newColor
         else newCurrentColors.secondary = newColor
 
         set({currentColors : newCurrentColors})

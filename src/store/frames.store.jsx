@@ -10,8 +10,14 @@ export const useFramesStore = create((set, get) =>({
         const newFrame = createArray({columnsCount, rowsCount}, 'transparent')
         const { framesList } = get()
 
-        
-
         set({ framesList : framesList.concat([newFrame])})
     },
+
+    editFrame : (newFrameInfo) =>{
+        const { currentFrame, framesList} = get()
+        const newFrameList = structuredClone(framesList)
+        newFrameList[currentFrame] = newFrameInfo
+
+        set({ framesList : newFrameList})
+    }
 }))

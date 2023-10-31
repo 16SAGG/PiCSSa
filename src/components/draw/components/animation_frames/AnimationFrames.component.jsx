@@ -23,7 +23,7 @@ export const AnimationFrames = () =>{
     const currentFrame = useFramesStore(state => state.currentFrame)
 
     const framesListIsEmpty = framesList.length === 0
-    if (framesListIsEmpty) return createNewFrame({
+    if (framesListIsEmpty) createNewFrame({
         columnsCount : canvasDimensions.columnsCount, 
         rowsCount : canvasDimensions.rowsCount,
     })

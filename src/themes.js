@@ -5,18 +5,15 @@ export const paletteRGBA = (alfa = 1) => {
             primaryVariant : `rgba(20, 20, 20, ${alfa})`,
             onPrimary : `rgba(250, 250, 250, ${alfa})`,
             
-            secondary : `rgba(141, 36, 70, ${alfa})`,
+            secondary : `rgba(255, 183, 77, ${alfa})`,
             secondaryVariant : undefined,
-            onSecondary : `rgba(250, 250, 250, ${alfa})`,
+            onSecondary : `rgba(31, 31, 31, ${alfa})`,
 
             error : undefined,
             onError : undefined,
             
             background : `rgba(24, 24, 24, ${alfa})`,
             onBackground : `rgba(250, 250, 250, ${alfa})`,
-
-            surface : `rgba(66, 66, 66, ${alfa})`,
-            onSurface : `rgba(250, 250, 250, ${alfa})`,
         }
     };
 

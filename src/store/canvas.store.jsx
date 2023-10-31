@@ -9,16 +9,11 @@ export const useCanvasStore = create((set) =>({
     },
     
     pointer : {
-        pressed : false,
+        isPressed : false,
         button : -1,
     },
 
-    setPointer : ({pressed, button}) =>{
-        const newPointer = {
-            pressed,
-            button
-        }
-
-        set({pointer : newPointer})
+    setPointer : ({isPressed, button}) =>{
+        set({pointer : {isPressed, button}})
     }
 }))

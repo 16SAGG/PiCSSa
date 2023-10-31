@@ -1,40 +1,62 @@
-import { useState } from "react"
 import PropTypes from 'prop-types';
 
 import { Button } from 'clean-styled-components/src/styled-components/elements/Button.styled.element';
 
-import { useCanvasStore } from "../../../../../store/canvas.store"
+import { useToolsStore } from "../../../../../store/tools/tools.store";
 import { useColorsStore } from "../../../../../store/colors.store"
 
-import { getColorInUse } from "../../../../../utilities/getColorInUse"
-
 import { colorButton } from "../../../../../styled-components/components/colorButton/colorButton.styled.component"
-import { useEffect } from "react"
 
+export const Pixel = ({pixelCoord, pointer, backgroundColor}) =>{
 
-export const Pixel = ({externalBackgroundColor}) =>{
-    const [backgroundColor, setBackgroundColor] = useState('')
+    const currentTool = useToolsStore(state => state.currentTool)
+    const toolsList = useToolsStore(state => state.toolsList)
+    const handleTool = toolsList[currentTool].function
 
-    useEffect(() =>{
-        setBackgroundColor(externalBackgroundColor)
-    }, [externalBackgroundColor])
+    const currentColors = useColorsStore(state => state.currentColors)
+    const setCurrentColors = useColorsStore(state => state.setCurrentColors)
 
-    const localBackgroundColorUpdate = (itCanBeUpdated, newBackgroundColor) => () =>{
-        if (itCanBeUpdated) setBackgroundColor(newBackgroundColor)
+    const toolPreviousArguments = {
+        pixelCoord,
+        currentColors,
+        backgroundColor,
+        setCurrentColors,
     }
 
-    const pointer = useCanvasStore(state => state.pointer)
-    const currentColors = useColorsStore(state => state.currentColors)
+    const handleEvents = (oldPointer, toolPreviousArguments) => (event) =>{
+        const pointer = handlePointer(event, oldPointer)
+       
+        const toolArguments = {
+            ...toolPreviousArguments,
+            pointer
+        }
+
+        handleTool(event, toolArguments)
+    }
+
+    const handlePointer = (event, oldPointer) =>{
+        const pointerIsOver = event.type === 'pointerover'
+        if (pointerIsOver) return oldPointer
+
+        return {
+            isPressed : true,
+            buttonThatIsPressed : event.button
+        }
+    }
 
     return(
         <Button
-            onPointerDown = {localBackgroundColorUpdate(true, getColorInUse(currentColors, pointer.button))}
-            onPointerOver = {localBackgroundColorUpdate(pointer.pressed, getColorInUse(currentColors, pointer.button))}
+            id = {`${pixelCoord.x}: ${pixelCoord.y}`}
+            className = 'pixel'
+            onPointerDown = {handleEvents(pointer, toolPreviousArguments)}
+            onPointerOver = {handleEvents(pointer, toolPreviousArguments)}
             $properties = {colorButton({$backgroundColor : backgroundColor})}
         ></Button>
     )
 }
 
 Pixel.propTypes = {
-    externalBackgroundColor: PropTypes.string,
+    pixelCoord : PropTypes.object,
+    pointer : PropTypes.object,
+    backgroundColor: PropTypes.string,
 }
