@@ -5,6 +5,7 @@ import { faEraser, faEyeDropper, faFill, faHand, faPencil, faSquare } from '@for
 import { pencil } from "./tools_functions/pencil.tool.function";
 import { eraser } from "./tools_functions/eraser.tool.function";
 import { eyeDropper } from "./tools_functions/eyeDropper.tool.function";
+import { square } from "./tools_functions/square.tool.function";
 
 const TOOLS_LIST = [
     {
@@ -25,7 +26,7 @@ const TOOLS_LIST = [
     },
     {
         icon : faSquare,
-        function : '',
+        function : square,
     },
     {
         icon : faEraser,
