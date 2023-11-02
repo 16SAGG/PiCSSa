@@ -7,6 +7,7 @@ import { eraser } from "./tools_functions/eraser.tool.function";
 import { eyeDropper } from "./tools_functions/eyeDropper.tool.function";
 import { square } from "./tools_functions/square.tool.function";
 import { fill } from "./tools_functions/fill.tool.function";
+import { hand } from "./tools_functions/hand.tool.function";
 
 const TOOLS_LIST = [
     {
@@ -15,7 +16,7 @@ const TOOLS_LIST = [
     },
     {
         icon : faHand,
-        function : '',
+        function : hand,
     },
     {
         icon : faFill,

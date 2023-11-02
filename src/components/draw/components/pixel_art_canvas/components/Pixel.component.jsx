@@ -4,6 +4,7 @@ import { Button } from 'clean-styled-components/src/styled-components/elements/B
 
 import { useToolsStore } from "../../../../../store/tools/tools.store";
 import { useColorsStore } from "../../../../../store/colors.store"
+import { useCanvasStore } from '../../../../../store/canvas.store';
 
 import { colorButton } from "../../../../../styled-components/components/colorButton/colorButton.styled.component"
 
@@ -16,12 +17,15 @@ export const Pixel = ({pixelCoord, pointer, backgroundColor, frameInfo}) =>{
     const currentColors = useColorsStore(state => state.currentColors)
     const setCurrentColors = useColorsStore(state => state.setCurrentColors)
 
+    const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
+
     const toolPreviousArguments = {
         pixelCoord,
         currentColors,
         setCurrentColors,
         backgroundColor,
         frameInfo,
+        canvasDimensions,
     }
 
     const handleEvents = (oldPointer, toolPreviousArguments) => (event) =>{
