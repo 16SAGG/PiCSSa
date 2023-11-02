@@ -6,6 +6,7 @@ import { pencil } from "./tools_functions/pencil.tool.function";
 import { eraser } from "./tools_functions/eraser.tool.function";
 import { eyeDropper } from "./tools_functions/eyeDropper.tool.function";
 import { square } from "./tools_functions/square.tool.function";
+import { fill } from "./tools_functions/fill.tool.function";
 
 const TOOLS_LIST = [
     {
@@ -18,7 +19,7 @@ const TOOLS_LIST = [
     },
     {
         icon : faFill,
-        function : '',
+        function : fill,
     },
     {
         icon : faEyeDropper,

@@ -52,9 +52,15 @@ export const Draw = () =>{
                         <SelectedColors/>
                     </Div>
                 </Div>
-                <Div id = 'center-column' $properties = {centerColumnProperties}>
+
+                <Div 
+                    id = 'center-column' 
+                    onPointerDown = {(event) => event.preventDefault()}
+                    $properties = {centerColumnProperties}
+                >
                     <PixelArtCanvas/>
                 </Div>
+
                 <Div id = 'right-column' $properties = {rightColumnProperties}>
                     <AnimationPreviewer/>
                     <AnimationFrames/>

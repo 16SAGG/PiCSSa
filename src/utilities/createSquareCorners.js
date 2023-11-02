@@ -1,6 +1,6 @@
-export const createAuxiliaryVectors = {}
+export const createSquareCorners = {}
 
-createAuxiliaryVectors['-1: -1'] = (
+createSquareCorners['-1: -1'] = (
     originPixelCoord = {}, 
     overPixelCoord = {}, 
 ) =>{
@@ -12,7 +12,7 @@ createAuxiliaryVectors['-1: -1'] = (
     ]
 }
 
-createAuxiliaryVectors['1: -1'] = (
+createSquareCorners['1: -1'] = (
     originPixelCoord = {}, 
     overPixelCoord = {}, 
 ) =>{
@@ -24,7 +24,7 @@ createAuxiliaryVectors['1: -1'] = (
     ]
 }
 
-createAuxiliaryVectors['-1: 1'] = (
+createSquareCorners['-1: 1'] = (
     originPixelCoord = {}, 
     overPixelCoord = {}, 
 ) =>{
@@ -36,7 +36,7 @@ createAuxiliaryVectors['-1: 1'] = (
     ]
 }
 
-createAuxiliaryVectors['1: 1'] = (
+createSquareCorners['1: 1'] = (
     originPixelCoord = {}, 
     overPixelCoord = {}, 
 ) =>{
@@ -48,7 +48,7 @@ createAuxiliaryVectors['1: 1'] = (
     ]
 }
 
-createAuxiliaryVectors['-1: 0'] = (
+createSquareCorners['-1: 0'] = (
     originPixelCoord = {}, 
     overPixelCoord = {}, 
 ) =>{
@@ -60,7 +60,7 @@ createAuxiliaryVectors['-1: 0'] = (
     ]
 }
 
-createAuxiliaryVectors['0: -1'] = (
+createSquareCorners['0: -1'] = (
     originPixelCoord = {}, 
     overPixelCoord = {}, 
 ) =>{
@@ -72,7 +72,7 @@ createAuxiliaryVectors['0: -1'] = (
     ]
 }
 
-createAuxiliaryVectors['1: 0'] = (
+createSquareCorners['1: 0'] = (
     originPixelCoord = {}, 
     overPixelCoord = {}, 
 ) =>{
@@ -84,7 +84,7 @@ createAuxiliaryVectors['1: 0'] = (
     ]
 }
 
-createAuxiliaryVectors['0: 1'] = (
+createSquareCorners['0: 1'] = (
     originPixelCoord = {}, 
     overPixelCoord = {}, 
 ) =>{
@@ -96,7 +96,7 @@ createAuxiliaryVectors['0: 1'] = (
     ]
 }
 
-createAuxiliaryVectors['0: 0'] = (
+createSquareCorners['0: 0'] = (
     originPixelCoord = {}, 
     overPixelCoord = {}, 
 ) =>{

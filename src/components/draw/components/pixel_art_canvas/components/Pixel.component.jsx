@@ -7,7 +7,7 @@ import { useColorsStore } from "../../../../../store/colors.store"
 
 import { colorButton } from "../../../../../styled-components/components/colorButton/colorButton.styled.component"
 
-export const Pixel = ({pixelCoord, pointer, backgroundColor}) =>{
+export const Pixel = ({pixelCoord, pointer, backgroundColor, frameInfo}) =>{
 
     const currentTool = useToolsStore(state => state.currentTool)
     const toolsList = useToolsStore(state => state.toolsList)
@@ -19,8 +19,9 @@ export const Pixel = ({pixelCoord, pointer, backgroundColor}) =>{
     const toolPreviousArguments = {
         pixelCoord,
         currentColors,
-        backgroundColor,
         setCurrentColors,
+        backgroundColor,
+        frameInfo,
     }
 
     const handleEvents = (oldPointer, toolPreviousArguments) => (event) =>{
@@ -59,4 +60,5 @@ Pixel.propTypes = {
     pixelCoord : PropTypes.object,
     pointer : PropTypes.object,
     backgroundColor: PropTypes.string,
+    frameInfo : PropTypes.array,
 }

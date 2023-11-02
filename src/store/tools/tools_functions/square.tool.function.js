@@ -1,4 +1,4 @@
-import { createAuxiliaryVectors } from "../../../utilities/createAuxiliaryVectors"
+import { createSquareCorners } from "../../../utilities/createSquareCorners"
 import { getColorInUse } from "../../../utilities/getColorInUse"
 import { getDirectionBetweenVectors } from "../../../utilities/getDirectionBetweenVectors"
 import { resetPixelsStyleBackgroundColor } from "../../../utilities/resetPixelsStyleBackgroundColor"
@@ -53,7 +53,7 @@ const drawSquare = (
     const direction = getDirectionBetweenVectors(originPixelCoord, overPixelCoord)
     const stringDirection = `${direction.x}: ${direction.y}`
     
-    const vectors = createAuxiliaryVectors[stringDirection](originPixelCoord, overPixelCoord)
+    const vectors = createSquareCorners[stringDirection](originPixelCoord, overPixelCoord)
     drawLine(vectors[0], vectors[1], newBackgroundColor)
     drawLine(vectors[0], vectors[2], newBackgroundColor)
     drawLine(vectors[1], vectors[3], newBackgroundColor)

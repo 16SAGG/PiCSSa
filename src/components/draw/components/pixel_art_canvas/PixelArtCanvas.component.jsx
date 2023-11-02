@@ -11,6 +11,11 @@ import { Pixel } from './components/Pixel.component';
 
 import { canvasStaticProperties } from './PixelArtCanvas.staticProperties';
 
+const BUTTONS_POINTER_ENTER_TO_BUTTONS_POINTER_DOWN_UP = {
+    '1' : 0,
+    '2' : 2,
+}
+
 export const PixelArtCanvas = () =>{
     const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
     
@@ -30,7 +35,14 @@ export const PixelArtCanvas = () =>{
         setPointer({isPressed : true, buttonThatIsPressed : event.button})
     }
 
-    const handlePointerUp =  (pixels, frameInfo, editFrame) => () => {
+    const handlerPointerEnter = (event) => {
+        setPointer({
+            isPressed : event.buttons > 0, 
+            buttonThatIsPressed : BUTTONS_POINTER_ENTER_TO_BUTTONS_POINTER_DOWN_UP[event.buttons]
+        })
+    }
+
+    const disablePointerAction =  (pixels, frameInfo, editFrame) => () => {
         setPointer({isPressed : false, buttonThatIsPressed : -1})
         updateFrameInfo(pixels, frameInfo, editFrame)
     }
@@ -44,9 +56,14 @@ export const PixelArtCanvas = () =>{
     return(
         <Section 
             id = 'canvas' 
+            
             onPointerDown = {handlePointerDown}
-            onPointerUp = {handlePointerUp(pixels, frameInfo, editFrame)}
+            onPointerEnter = {handlerPointerEnter}
+            onPointerUp = {disablePointerAction(pixels, frameInfo, editFrame)}
+            onPointerLeave = {disablePointerAction(pixels, frameInfo, editFrame)}
+            
             onContextMenu = {(event) => event.preventDefault()}
+            
             $properties = {canvasProperties}
         >
             {frameInfo.map((row, indexY) => (
@@ -56,6 +73,7 @@ export const PixelArtCanvas = () =>{
                         pixelCoord = {{x : indexX, y : indexY}}
                         pointer = {pointer}
                         backgroundColor = {pixelBackgroundColor}
+                        frameInfo = {frameInfo}
                     />
                 ))
             ))}
