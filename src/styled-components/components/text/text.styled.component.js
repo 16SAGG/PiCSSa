@@ -18,19 +18,19 @@ export const text = ({
     $minHeight = undefined,
 }) => {
     return template({
-        $flexGrow : $flexGrow,
+        $flexGrow,
 
-        $gridColumn : $gridColumn,
-        $gridRow : $gridRow,
+        $gridColumn,
+        $gridRow,
 
-        $color : $color,
+        $color,
 
-        $backgroundColor : $backgroundColor,
+        $backgroundColor,
 
-        $textAlign : $textAlign,
+        $textAlign,
 
-        $minWidth : $minWidth,
+        $minWidth,
 
-        $minHeight : $minHeight,
+        $minHeight,
     })
 }

@@ -4,7 +4,7 @@ export const useCanvasStore = create((set) =>({
     canvasDimensions : {
         pixelSize : '24px',
     
-        columnsCount : 16,
+        columnsCount : 8,
         rowsCount : 16,
     },
     

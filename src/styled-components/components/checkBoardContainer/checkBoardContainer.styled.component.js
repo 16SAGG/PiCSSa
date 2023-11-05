@@ -40,49 +40,59 @@ export const checkBoardContainer = ({
     $borderLeftWidth = border.width.medium,
     $borderRightWidth = border.width.medium,
 
+    $paddingTop = undefined,
+    $paddingBottom  = undefined,
+    $paddingLeft = undefined,
+    $paddingRight = undefined,
+
     $transitionDuration = duration.fast,
 
     $zIndex = undefined
 }) => {
     return template({
-        $display : $display,
+        $display,
 
-        $flexGrow : $flexGrow,
+        $flexGrow,
 
-        $gridColumn : $gridColumn,
-        $gridRow : $gridRow,
+        $gridColumn,
+        $gridRow,
         
-        $gridTemplateColumns : $gridTemplateColumns,
-        $gridTemplateRows : $gridTemplateRows,
+        $gridTemplateColumns,
+        $gridTemplateRows,
 
-        $height : $height,
-        $minHeight : $minHeight,
-        $maxHeight : $maxHeight,
+        $height,
+        $minHeight,
+        $maxHeight,
 
-        $width : $width,
-        $minWidth : $minWidth,
-        $maxWidth : $maxWidth,
+        $width,
+        $minWidth,
+        $maxWidth,
 
-        $opacity : $opacity,
+        $opacity,
 
-        $backgroundColor : $backgroundColor,
-        $backgroundImage : $backgroundImage,
-        $backgroundSize : $backgroundSize,
-        $backgroundPosition : $backgroundPosition,
+        $backgroundColor,
+        $backgroundImage,
+        $backgroundSize,
+        $backgroundPosition,
 
-        $borderStyle : $borderStyle,
-        $borderColor : $borderColor,
-        $borderTopWidth : $borderTopWidth,
-        $borderBottomWidth : $borderBottomWidth,
-        $borderLeftWidth : $borderLeftWidth,
-        $borderRightWidth : $borderRightWidth,
+        $borderStyle,
+        $borderColor,
+        $borderTopWidth,
+        $borderBottomWidth,
+        $borderLeftWidth,
+        $borderRightWidth,
 
-        $transitionDuration : $transitionDuration,
+        $paddingTop,
+        $paddingBottom,
+        $paddingLeft,
+        $paddingRight,
 
-        $zIndex : $zIndex,
+        $transitionDuration,
+
+        $zIndex,
 
         $hoverProperties : checkBoardContainerHover({
-            $hoverOpacity : $hoverOpacity,
+            $hoverOpacity,
         })
     })
 }

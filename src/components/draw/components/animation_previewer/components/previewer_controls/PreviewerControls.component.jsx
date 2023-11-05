@@ -6,6 +6,8 @@ import { Div } from 'clean-styled-components/src/styled-components/elements/Div.
 import { Input } from 'clean-styled-components/src/styled-components/elements/Input.styled.element';
 import { Span } from 'clean-styled-components/src/styled-components/elements/Span.styled.element';
 
+import { useAnimationStore } from '../../../../../../store/animation.store';
+
 import { layout } from '../../../../../../styled-components/components/layout/layout.styled.component';
 import { iconButton } from '../../../../../../styled-components/components/iconButton/iconButton.styled.component';
 import { text } from '../../../../../../styled-components/components/text/text.styled.component';
@@ -14,6 +16,10 @@ import { rangeInput } from '../../../../../../styled-components/components/range
 import { FPSCounterStaticProperties, previewerControlsStaticProperties, rangeFPSInputStaticProperties, rangeFPSStaticProperties } from './PreviewerControls.staticProperties';
 
 export const PreviewerControls = () =>{
+    const animationIsPlaying = useAnimationStore(state => state.animationIsPlaying)
+    const setAnimationIsPlaying = useAnimationStore(state => state.setAnimationIsPlaying)
+    const FPS = useAnimationStore(state => state.FPS)
+    const setFPS = useAnimationStore(state => state.setFPS)
 
     const previewerControlsProperties = layout(previewerControlsStaticProperties);
     const playStopButtonProperties = iconButton({});
@@ -23,13 +29,29 @@ export const PreviewerControls = () =>{
 
     return(
         <Div id = 'previewer-controls' $properties = {previewerControlsProperties}>
-            <Button id = 'play-stop-button' $properties = {playStopButtonProperties} >
-                <FontAwesomeIcon icon = {faPlay}/>
+            <Button
+                onPointerDown = {() => setAnimationIsPlaying(!animationIsPlaying)}
+                $properties = {playStopButtonProperties}
+            >
+                {
+                    (animationIsPlaying) ?
+                        <FontAwesomeIcon icon = {faStop}/>
+                    :
+                        <FontAwesomeIcon icon = {faPlay}/>
+                }
             </Button>
-            <Span  id = 'range-fps' $properties = {rangeFPSProperties}>
-                <Input id = 'range-fps-input' type = 'range' min = '0' max = '24' $properties = {rangeFPSInputProperties}/>
-                <Span id = 'fps-counter' $properties = {FPSCounterProperties}>
-                    22
+
+            <Span $properties = {rangeFPSProperties}>
+                <Input 
+                    type = 'range' 
+                    min = '1' max = '24' 
+                    value = {FPS}
+                    onChange = {(event) => setFPS(event.target.value)}
+                    $properties = {rangeFPSInputProperties}
+                />
+                
+                <Span $properties = {FPSCounterProperties}>
+                    {FPS}
                 </Span>
             </Span>
         </Div>

@@ -6,6 +6,10 @@ export const useFramesStore = create((set, get) =>({
     currentFrame : 0,
     framesList : [],
 
+    setCurrentFrame : (currentFrame) =>{
+        set({currentFrame})
+    },
+
     createNewFrame : ({columnsCount = 8, rowsCount = 8}) =>{
         const newFrame = createArray({columnsCount, rowsCount}, 'transparent')
         const { framesList } = get()

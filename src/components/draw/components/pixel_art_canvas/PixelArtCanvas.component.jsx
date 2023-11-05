@@ -42,7 +42,7 @@ export const PixelArtCanvas = () =>{
         })
     }
 
-    const disablePointerAction =  (pixels, frameInfo, editFrame) => () => {
+    const endPointerAction =  (pixels, frameInfo, editFrame) => () => {
         setPointer({isPressed : false, buttonThatIsPressed : -1})
         updateFrameInfo(pixels, frameInfo, editFrame)
     }
@@ -59,8 +59,8 @@ export const PixelArtCanvas = () =>{
             
             onPointerDown = {handlePointerDown}
             onPointerEnter = {handlerPointerEnter}
-            onPointerUp = {disablePointerAction(pixels, frameInfo, editFrame)}
-            onPointerLeave = {disablePointerAction(pixels, frameInfo, editFrame)}
+            onPointerUp = {endPointerAction(pixels, frameInfo, editFrame)}
+            onPointerLeave = {endPointerAction(pixels, frameInfo, editFrame)}
             
             onContextMenu = {(event) => event.preventDefault()}
             

@@ -1,74 +1,66 @@
 import PropTypes from 'prop-types';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy, faArrowUp, faArrowDown, faX} from '@fortawesome/free-solid-svg-icons'
-
 import { Li } from 'clean-styled-components/src/styled-components/elements/Li.styled.element';
 import { Span } from 'clean-styled-components/src/styled-components/elements/Span.styled.element';
-import { Button } from 'clean-styled-components/src/styled-components/elements/Button.styled.element';
+
+import { useFramesStore } from '../../../../../../store/frames.store';
+import { useFileStore } from '../../../../../../store/file.store';
+import { useCanvasStore } from '../../../../../../store/canvas.store';
 
 import { layout } from '../../../../../../styled-components/components/layout/layout.styled.component';
-import { checkBoardContainer } from '../../../../../../styled-components/components/checkBoardContainer/checkBoardContainer.styled.component';
-import { text } from '../../../../../../styled-components/components/text/text.styled.component';
-import { iconButton } from '../../../../../../styled-components/components/iconButton/iconButton.styled.component';
 
-import { buttonsContainerStaticProperties, buttonStaticProperties, contentStaticProperties, frameItemStaticProperties, IDContainerStaticProperties, columnsWrapperStaticProperties } from './FrameItem.staticProperties';
-import { paletteRGBA, transparency} from '../../../../../../themes';
+import { convertPixelArtSingleToCSS } from '../../../../../../utilities/convertPixelArtToCSS';
+import { adaptPixelSizeToPreviewSize } from '../../../../../../utilities/adaptPixelSizeToPreviewSize';
+
+import {border, size} from '../../../../../../themes';
+
+import { frameItemStaticProperties, columnsWrapperStaticProperties } from './FrameItem.staticProperties';
+
+import { ButtonContainer } from './components/ButtonsContainer/ButtonsContainer.component';
+import { IDContainer } from './components/IDContainer/IDContainer.component';
+import { Content } from './components/Content/Content.component';
 
 export const FrameItem = ({frameID, isTheCurrentFrame}) =>{
+    const framesList = useFramesStore(state => state.framesList)
+    
+    const fileName = useFileStore(state => state.fileName)
+
+    const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
+
+    const pixelSize = adaptPixelSizeToPreviewSize(
+        parseFloat(size.box)*2 - parseFloat(border.width.medium)*2, 
+        canvasDimensions.columnsCount, 
+        canvasDimensions.rowsCount
+    )
 
     const frameItemProperties = layout(frameItemStaticProperties);
     
     const columnsWrapperProperties = layout(columnsWrapperStaticProperties);
-    
-    const IDContainerProperties = layout(IDContainerStaticProperties({
-        $backgroundColor : (isTheCurrentFrame) ? paletteRGBA().theme_1.secondary : undefined
-    }));
-
-    const IDProperties = text({
-        $color : (isTheCurrentFrame) ? paletteRGBA().theme_1.onSecondary : undefined
-    });
-    
-    const buttonsContainerProperties = layout(buttonsContainerStaticProperties);
-    const buttonProperties = iconButton(buttonStaticProperties({
-        $color : (isTheCurrentFrame) ? paletteRGBA().theme_1.secondary : undefined,
-        $backgroundColor : (isTheCurrentFrame) ? paletteRGBA(transparency.medium).theme_1.primary : undefined,
-    }));
-
-    const contentProperties = checkBoardContainer(contentStaticProperties);
 
     return(
-        <Li $properties = {frameItemProperties}>
-            <Span $properties = {columnsWrapperProperties}>
-                <Span $properties = {IDContainerProperties}>
-                    <Span $properties = {IDProperties}>
-                        {frameID}
-                    </Span>
+        <>
+            <style>
+                {convertPixelArtSingleToCSS(framesList[frameID], `${fileName}_${frameID}`, pixelSize)}
+            </style>
+
+            <Li $properties = {frameItemProperties}>
+                <Span $properties = {columnsWrapperProperties}>
+                    <IDContainer
+                        frameID={frameID}
+                        isTheCurrentFrame={isTheCurrentFrame}
+                    />
+
+                    <ButtonContainer
+                        isTheCurrentFrame = {isTheCurrentFrame}
+                    />
                 </Span>
 
-                <Span $properties = {buttonsContainerProperties}>
-                    <Button $properties = {buttonProperties}>
-                        <FontAwesomeIcon icon = {faCopy}/>
-                    </Button>
-
-                    <Button $properties = {buttonProperties}>
-                        <FontAwesomeIcon icon = {faArrowUp}/>
-                    </Button>
-
-                    <Button $properties = {buttonProperties}>
-                        <FontAwesomeIcon icon = {faArrowDown}/>
-                    </Button>
-
-                    <Button $properties = {buttonProperties}>
-                        <FontAwesomeIcon icon={faX}/>
-                    </Button>
-                </Span>
-            </Span>
-
-            <Span $properties = {contentProperties}>
-
-            </Span>
-        </Li>
+                <Content
+                    fileName = {fileName}
+                    frameID = {frameID}
+                />
+            </Li>
+        </>
     );
 }
 
