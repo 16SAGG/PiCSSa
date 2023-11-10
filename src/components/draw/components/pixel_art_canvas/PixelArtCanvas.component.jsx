@@ -7,14 +7,12 @@ import { useFramesStore } from '../../../../store/frames.store';
 
 import { checkBoardContainer } from '../../../../styled-components/components/checkBoardContainer/checkBoardContainer.styled.component';
 
+import { determineIfThereIsOverflow } from '../../../../utilities/determineIfThereIsOverflow';
+import { BUTTONS_POINTER_ENTER_TO_BUTTONS_POINTER_DOWN_UP } from '../../../../utilities/constantValues';
+
 import { Pixel } from './components/Pixel.component';
 
 import { canvasStaticProperties } from './PixelArtCanvas.staticProperties';
-
-const BUTTONS_POINTER_ENTER_TO_BUTTONS_POINTER_DOWN_UP = {
-    '1' : 0,
-    '2' : 2,
-}
 
 export const PixelArtCanvas = () =>{
     const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
@@ -30,6 +28,18 @@ export const PixelArtCanvas = () =>{
     const editFrame = useFramesStore(state => state.editFrame)
 
     const pixels = document.getElementsByClassName('pixel')
+
+    const centerColumn = document.getElementById('center-column')
+    const canvas = document.getElementById('canvas')
+    const canvasResizeObserver = new ResizeObserver(() =>{
+        const thereIsOverflowInTheWidth = determineIfThereIsOverflow(canvas, centerColumn).width
+        const thereIsOverflowInTheHeight = determineIfThereIsOverflow(canvas, centerColumn).height
+
+        centerColumn.style.justifyContent = (thereIsOverflowInTheHeight) ? 'start' : 'center'
+        centerColumn.style.alignItems = (thereIsOverflowInTheWidth) ? 'start' : 'center'
+    })
+    const canvasIsCharged = canvas != null 
+    if (canvasIsCharged) canvasResizeObserver.observe(canvas)
     
     const handlePointerDown = (event) => {
         setPointer({isPressed : true, buttonThatIsPressed : event.button})

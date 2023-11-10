@@ -12,7 +12,7 @@ import { layout } from '../../../../../../../../styled-components/components/lay
 
 import { IDContainerStaticProperties } from './IDContainer.staticProperties';
 
-export const IDContainer = ({frameID, isTheCurrentFrame}) =>{
+export const IDContainer = ({framePosition, isTheCurrentFrame}) =>{
     const setCurrentFrame = useFramesStore(state => state.setCurrentFrame)
 
     const IDContainerProperties = layout(IDContainerStaticProperties({
@@ -25,17 +25,17 @@ export const IDContainer = ({frameID, isTheCurrentFrame}) =>{
 
     return (
         <Button 
-            onPointerDown = {() => setCurrentFrame(frameID)}
+            onPointerDown = {() => setCurrentFrame(framePosition)}
             $properties = {IDContainerProperties}
         >
             <Span $properties = {IDProperties}>
-                {frameID}
+                {framePosition}
             </Span>
         </Button>
     )
 }
 
 IDContainer.propTypes = {
-    frameID : PropTypes.number,
+    framePosition : PropTypes.number,
     isTheCurrentFrame : PropTypes.bool,
 }

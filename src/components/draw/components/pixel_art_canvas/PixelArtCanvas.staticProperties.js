@@ -1,20 +1,17 @@
-import { size } from "../../../../themes";
-
 export const canvasStaticProperties = ({
     $rowsCount = 8,
     $columnsCount = 8,
-    $pixelSize = size.box,
+    $pixelSize = 24,
 
     $display = 'grid',
-    $gridTemplateColumns = `repeat(${$columnsCount}, ${$pixelSize})`,
-    $gridTemplateRows = `repeat(${$rowsCount}, ${$pixelSize})`,
+    $gridTemplateColumns = `repeat(${$columnsCount}, ${$pixelSize}px)`,
+    $gridTemplateRows = `repeat(${$rowsCount}, ${$pixelSize}px)`,
     $opacity = '1',
 }) =>{
-    const result = {
-        $display : $display,
-        $gridTemplateColumns : $gridTemplateColumns,
-        $gridTemplateRows : $gridTemplateRows,
-        $opacity : $opacity,
+    return {
+        $display,
+        $gridTemplateColumns,
+        $gridTemplateRows,
+        $opacity
     }
-    return result;
 }

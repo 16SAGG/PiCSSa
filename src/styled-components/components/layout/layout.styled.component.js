@@ -3,11 +3,17 @@ import { layoutHover } from "./layout.styled.hover.component"
 
 export const layout = ({
     $display = undefined,
+
+    $alignContent = undefined,
+
+    $position = undefined,
     
     $flexDirection = undefined,
 
     $flexGrow = undefined,
     $flexShrink = undefined,
+
+    $listStyleType = undefined,
 
     $gridTemplateColumns = undefined,
     $gridTemplateRows = undefined,
@@ -31,9 +37,16 @@ export const layout = ({
     $paddingLeft = undefined,
     $paddingRight = undefined,
 
+    $marginTop = undefined,
+    $marginBottom = undefined,
+    $marginLeft = undefined,
+    $marginRight = undefined,
+
     $gap = undefined,
 
     $backgroundColor = undefined,
+
+    $color = undefined,
 
     $borderStyle = undefined,
     $borderColor = undefined,
@@ -45,53 +58,70 @@ export const layout = ({
     $transitionDuration = undefined,
 
     $overflow = undefined,
+
+    $zIndex = undefined,
 }) => {
     return template({
-        $display : $display,
+        $display,
 
-        $flexDirection : $flexDirection,
+        $alignContent,
 
-        $flexGrow : $flexGrow,
-        $flexShrink : $flexShrink,
+        $position,
 
-        $gridTemplateColumns : $gridTemplateColumns,
-        $gridTemplateRows : $gridTemplateRows,
+        $flexDirection,
 
-        $alignItems : $alignItems,
-        $justifyContent : $justifyContent,
+        $flexGrow,
+        $flexShrink,
 
-        $opacity : $opacity,
+        $listStyleType,
 
-        $height : $height,
-        $minHeight : $minHeight,
-        $maxHeight : $maxHeight,
+        $gridTemplateColumns,
+        $gridTemplateRows,
 
-        $width : $width,
-        $minWidth : $minWidth,
-        $maxWidth : $maxWidth,
+        $alignItems,
+        $justifyContent,
 
-        $paddingTop : $paddingTop,
-        $paddingBottom : $paddingBottom,
-        $paddingLeft : $paddingLeft,
-        $paddingRight : $paddingRight,
+        $opacity,
 
-        $gap : $gap,
+        $height,
+        $minHeight,
+        $maxHeight,
 
-        $backgroundColor : $backgroundColor,
+        $width,
+        $minWidth,
+        $maxWidth,
 
-        $borderStyle : $borderStyle,
-        $borderColor : $borderColor,
-        $borderTopWidth : $borderTopWidth,
-        $borderBottomWidth : $borderBottomWidth,
-        $borderLeftWidth : $borderLeftWidth,
-        $borderRightWidth : $borderRightWidth,
+        $paddingTop,
+        $paddingBottom,
+        $paddingLeft,
+        $paddingRight,
 
-        $transitionDuration : $transitionDuration,
+        $marginTop,
+        $marginBottom,
+        $marginLeft,
+        $marginRight,
 
-        $overflow : $overflow,
+        $gap,
+
+        $backgroundColor,
+
+        $color,
+
+        $borderStyle,
+        $borderColor,
+        $borderTopWidth,
+        $borderBottomWidth,
+        $borderLeftWidth,
+        $borderRightWidth,
+
+        $transitionDuration,
+
+        $overflow,
 
         $hoverProperties : layoutHover ({
-            $hoverOpacity : $hoverOpacity,
-        })
+            $hoverOpacity,
+        }),
+
+        $zIndex,
     })
 }

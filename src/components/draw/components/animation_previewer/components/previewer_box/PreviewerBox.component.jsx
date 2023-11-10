@@ -16,15 +16,18 @@ import { size } from '../../../../../../themes';
 import { previewerBoxStaticProperties } from './PreviewerBox.staticProperties';
 
 export const PreviewerBox = () =>{
-    const framesList = useFramesStore(state => state.framesList)
     const currentFrame = useFramesStore(state => state.currentFrame)
+    const framesList = useFramesStore(state => state.framesList)
+    const framesCount = framesList.length
+    
+    const animationIsPlaying = useAnimationStore(state => state.animationIsPlaying)
+    const FPS = useAnimationStore(state => state.FPS)
+
+    const animationDuration = framesCount/FPS
 
     const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
 
     const fileName = useFileStore(state => state.fileName)
-
-    const animationIsPlaying = useAnimationStore(state => state.animationIsPlaying)
-    const FPS = useAnimationStore(state => state.FPS)
 
     const thereIsMoreThanOneFrame = framesList.length > 1
 
@@ -51,7 +54,7 @@ export const PreviewerBox = () =>{
             <style>
                 {
                     (thereIsMoreThanOneFrame && animationIsPlaying) ?
-                        convertPixelArtAnimationToCSS(framesList, fileName, pixelSize, 1/FPS)
+                        convertPixelArtAnimationToCSS(framesList, fileName, pixelSize, animationDuration)
                     :
                         convertPixelArtSingleToCSS(framesList[currentFrame], fileName, pixelSize)
                 }

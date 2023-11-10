@@ -65,8 +65,8 @@ export const rightColumnStaticProperties = {
     $borderStyle : 'solid',
     $borderTopWidth : '0px',
     $borderBottomWidth : '0px',
-    $borderLeftWidth : border.width.small,
     $borderRightWidth : '0px',
+    $borderLeftWidth : border.width.small,
 }
     
 export const centerColumnStaticProperties = {

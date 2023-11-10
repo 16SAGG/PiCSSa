@@ -13,7 +13,7 @@ import { checkBoardContainer } from "../../../../../../../../styled-components/c
 import { contentStaticProperties, previewerStaticProperties } from './Content.staticProperties';
 
 
-export const Content = ({fileName, frameID}) =>{
+export const Content = ({fileName, framePosition}) =>{
     const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
 
     const setCurrentFrame = useFramesStore(state => state.setCurrentFrame)
@@ -33,19 +33,19 @@ export const Content = ({fileName, frameID}) =>{
 
     return(
         <Div 
-            onPointerDown = {() => setCurrentFrame(frameID)}
+            onPointerDown = {() => setCurrentFrame(framePosition)}
             $properties = {contentProperties}
         >
             <Div
                 $properties = {previewerProperties}
             >
-                <Div className = {`${fileName}_${frameID}`}></Div>
+                <Div className = {`${fileName}_${framePosition}`}></Div>
             </Div>
         </Div>
     )
 }
 
 Content.propTypes = {
-    frameID : PropTypes.number,
+    framePosition : PropTypes.number,
     fileName : PropTypes.string,
 }

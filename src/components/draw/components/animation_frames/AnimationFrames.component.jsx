@@ -38,7 +38,7 @@ export const AnimationFrames = () =>{
                 {framesList.map((frameContent, index) => (
                     <FrameItem 
                         key = {index}
-                        frameID = {index}
+                        framePosition = {index}
                         isTheCurrentFrame = {currentFrame === index}
                     />
                 ))}

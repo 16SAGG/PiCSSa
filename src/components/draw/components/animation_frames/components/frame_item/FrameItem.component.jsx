@@ -16,11 +16,11 @@ import {border, size} from '../../../../../../themes';
 
 import { frameItemStaticProperties, columnsWrapperStaticProperties } from './FrameItem.staticProperties';
 
-import { ButtonContainer } from './components/ButtonsContainer/ButtonsContainer.component';
+import { ButtonsContainer } from './components/ButtonsContainer/ButtonsContainer.component';
 import { IDContainer } from './components/IDContainer/IDContainer.component';
 import { Content } from './components/Content/Content.component';
 
-export const FrameItem = ({frameID, isTheCurrentFrame}) =>{
+export const FrameItem = ({framePosition, isTheCurrentFrame}) =>{
     const framesList = useFramesStore(state => state.framesList)
     
     const fileName = useFileStore(state => state.fileName)
@@ -40,24 +40,25 @@ export const FrameItem = ({frameID, isTheCurrentFrame}) =>{
     return(
         <>
             <style>
-                {convertPixelArtSingleToCSS(framesList[frameID], `${fileName}_${frameID}`, pixelSize)}
+                {convertPixelArtSingleToCSS(framesList[framePosition], `${fileName}_${framePosition}`, pixelSize)}
             </style>
 
             <Li $properties = {frameItemProperties}>
                 <Span $properties = {columnsWrapperProperties}>
                     <IDContainer
-                        frameID={frameID}
+                        framePosition = {framePosition}
                         isTheCurrentFrame={isTheCurrentFrame}
                     />
 
-                    <ButtonContainer
+                    <ButtonsContainer
+                        framePosition = {framePosition}
                         isTheCurrentFrame = {isTheCurrentFrame}
                     />
                 </Span>
 
                 <Content
                     fileName = {fileName}
-                    frameID = {frameID}
+                    framePosition = {framePosition}
                 />
             </Li>
         </>
@@ -65,6 +66,6 @@ export const FrameItem = ({frameID, isTheCurrentFrame}) =>{
 }
 
 FrameItem.propTypes = {
-    frameID : PropTypes.number,
+    framePosition : PropTypes.number,
     isTheCurrentFrame : PropTypes.bool,
 }

@@ -5,7 +5,7 @@ export const useColorsStore = create((set, get) =>({
     palettesList : [],
 
     currentColors : {
-        primary : "#000",
+        primary : "rgb(0, 0, 0)",
         secondary : "transparent",
     },
 

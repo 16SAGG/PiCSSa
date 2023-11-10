@@ -11,9 +11,15 @@ import { iconButton } from "../../../../../../../../styled-components/components
 
 import { paletteRGBA, transparency } from "../../../../../../../../themes"
 
+import { useFramesStore } from '../../../../../../../../store/frames.store';
+
 import { buttonStaticProperties, buttonsContainerStaticProperties } from "./ButtonsContainer.staticProperties"
 
-export const ButtonContainer = ({isTheCurrentFrame}) =>{
+export const ButtonsContainer = ({isTheCurrentFrame, framePosition}) =>{
+    const duplicateFrame = useFramesStore(state => state.duplicateFrame)
+    const moveFrameTo = useFramesStore(state => state.moveFrameTo)
+    const deleteFrame = useFramesStore(state => state.deleteFrame)
+
     const buttonsContainerProperties = layout(buttonsContainerStaticProperties);
     const buttonProperties = iconButton(buttonStaticProperties({
         $color : (isTheCurrentFrame) ? paletteRGBA().theme_1.secondary : undefined,
@@ -22,25 +28,38 @@ export const ButtonContainer = ({isTheCurrentFrame}) =>{
 
     return (
         <Span $properties = {buttonsContainerProperties}>
-            <Button $properties = {buttonProperties}>
+            <Button 
+                onPointerDown = {() => duplicateFrame(framePosition)}
+                $properties = {buttonProperties}
+            >
                 <FontAwesomeIcon icon = {faCopy}/>
             </Button>
 
-            <Button $properties = {buttonProperties}>
+            <Button
+                onPointerDown = {() => moveFrameTo(framePosition, framePosition - 1)}
+                $properties = {buttonProperties}
+            >
                 <FontAwesomeIcon icon = {faArrowUp}/>
             </Button>
 
-            <Button $properties = {buttonProperties}>
+            <Button
+                onPointerDown = {() => moveFrameTo(framePosition, framePosition + 1)}
+                $properties = {buttonProperties}
+            >
                 <FontAwesomeIcon icon = {faArrowDown}/>
             </Button>
 
-            <Button $properties = {buttonProperties}>
+            <Button 
+                onPointerDown = {() => deleteFrame(framePosition)}
+                $properties = {buttonProperties}
+            >
                 <FontAwesomeIcon icon={faX}/>
             </Button>
         </Span>
     )
 }
 
-ButtonContainer.propTypes = {
+ButtonsContainer.propTypes = {
     isTheCurrentFrame : PropTypes.bool,
+    framePosition : PropTypes.number,
 }

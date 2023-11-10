@@ -6,10 +6,12 @@ export const iconButtonHover = ({
     $hoverOpacity = '1',
 
     $hoverBackgroundColor = paletteRGBA().theme_1.primaryVariant,
+    $hoverColor = undefined,
 }) => {
     return template({
         $opacity : $hoverOpacity,
 
         $backgroundColor : $hoverBackgroundColor,
+        $color : $hoverColor,
     })
 }

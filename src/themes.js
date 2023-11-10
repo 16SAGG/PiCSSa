@@ -9,8 +9,8 @@ export const paletteRGBA = (alfa = 1) => {
             secondaryVariant : undefined,
             onSecondary : `rgba(31, 31, 31, ${alfa})`,
 
-            error : undefined,
-            onError : undefined,
+            danger : `rgba(229, 115, 115, ${alfa})`,
+            onDanger : `rgba(31, 31, 31, ${alfa})`,
             
             background : `rgba(24, 24, 24, ${alfa})`,
             onBackground : `rgba(250, 250, 250, ${alfa})`,

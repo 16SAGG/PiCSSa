@@ -4,7 +4,12 @@ import { duration, paletteRGBA, size, transparency } from "../../../themes"
 import { iconButtonHover } from "./iconButton.styled.hover.component"
 
 export const iconButton = ({
+    $display = undefined,
+    $alignItems = undefined,
+
     $flexGrow = undefined,
+
+    $textAlign = undefined,
 
     $minHeight = size.box,
     $maxHeight = undefined,
@@ -24,39 +29,46 @@ export const iconButton = ({
     $hoverBackgroundColor = undefined,
 
     $color = paletteRGBA().theme_1.onPrimary,
+    $hoverColor = undefined,
 
     $borderStyle = 'none',
 
     $transitionDuration = duration.fast,
 }) => {
     return template({
-        $flexGrow : $flexGrow,
+        $display,
+        $alignItems,
 
-        $minHeight : $minHeight,
-        $maxHeight : $maxHeight,
+        $flexGrow,
+
+        $textAlign,
+
+        $minHeight,
+        $maxHeight,
         
-        $minWidth : $minWidth,
-        $maxWidth : $maxWidth,
+        $minWidth,
+        $maxWidth,
 
-        $paddingTop : $paddingTop,
-        $paddingBottom : $paddingBottom,
-        $paddingLeft : $paddingLeft,
-        $paddingRight : $paddingRight,
+        $paddingTop,
+        $paddingBottom,
+        $paddingLeft,
+        $paddingRight,
 
-        $opacity : $opacity,
+        $opacity,
 
-        $backgroundColor : $backgroundColor,
+        $backgroundColor,
 
-        $color : $color,
+        $color,
 
-        $borderStyle : $borderStyle,
+        $borderStyle,
 
-        $transitionDuration : $transitionDuration,
+        $transitionDuration,
 
         $hoverProperties : iconButtonHover({
-            $hoverOpacity : $hoverOpacity,
+            $hoverOpacity,
 
-            $hoverBackgroundColor : $hoverBackgroundColor
+            $hoverBackgroundColor,
+            $hoverColor 
         })
     })
 }

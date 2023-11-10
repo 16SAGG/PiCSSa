@@ -6,7 +6,6 @@ export const previewerBoxStaticProperties = ({
     $flexGrow = '1',
     $opacity = '1',
 }) => {
-    console.log($paddingTop)
     return {
         $paddingTop,
         $paddingBottom, 

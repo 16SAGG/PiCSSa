@@ -1,4 +1,4 @@
-import { duration, paletteRGBA, size, transparency } from "../../../../../../themes"
+import { duration, size, transparency } from "../../../../../../themes"
 
 export const frameItemStaticProperties = {
     $display : 'flex',

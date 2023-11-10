@@ -1,3 +1,30 @@
 body{
     margin: 0;
 }
+
+hr{
+  height: 1px;
+  background-color: rgba(250, 250, 250, 0.05);
+  border: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+textarea {
+  resize: none;
+  outline-style: none;
+  color: rgb(250, 250, 250);
+  background-color: rgb(20, 20, 20);
+  flex-grow: 1;
+}
+
+.small_text {
+  font-size: 12px;
+}
