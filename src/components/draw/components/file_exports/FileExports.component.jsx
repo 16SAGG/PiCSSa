@@ -18,13 +18,13 @@ export const FileExports= () =>{
     }
 
     const setExportsOptions = [
-        {
-            type : 'button',
-            value : 'Back to home'
-        },
-        {
-            type : 'break',
-        },
+        //{
+        //    type : 'button',
+        //    value : 'Back to home'
+        //},
+        //{
+        //    type : 'break',
+        //},
         {
             type : 'button',
             value : 'Export PiCSSa',

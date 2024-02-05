@@ -48,7 +48,7 @@ moveTowards['0: -1'] = (
     columnsCount = 0,
     rowsCount = 0,
 ) => {
-    const auxColumn = getAuxiliar({maxCount : rowsCount, axis : 'y'})
+    const auxColumn = getAuxiliar({maxCount : columnsCount, axis : 'y'})
 
     for (let indexY = 0; indexY < columnsCount; indexY++) {
         for (let indexX = 0; indexX < rowsCount; indexX++ ) {
@@ -70,7 +70,8 @@ moveTowards['0: 1'] = (
     columnsCount = 0,
     rowsCount = 0,
 ) => {
-    const auxColumn = getAuxiliar({maxCount : rowsCount, anchorOfTheOtherAxis : rowsCount - 1, axis : 'y'})
+    console.log(rowsCount, columnsCount - 1)
+    const auxColumn = getAuxiliar({maxCount : columnsCount, anchorOfTheOtherAxis : rowsCount - 1, axis : 'y'})
 
     for (let indexY = columnsCount - 1; indexY >= 0; indexY--) {
         for (let indexX = 0; indexX < rowsCount; indexX++ ) {

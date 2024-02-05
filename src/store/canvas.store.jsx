@@ -42,26 +42,15 @@ export const useCanvasStore = create((set, get) =>({
         set({canvasDimensions : newCanvasDimensions})
     },
 
-    setColumnsCount : (newColumnsCount) =>{
+    setColumnsXRowsCount : (newColumnsXRowsCount) =>{
         const {canvasDimensions} = get()
 
-        const newColumnsCountIsNotValid = newColumnsCount < DIMENSIONS_COUNT_MIN || newColumnsCount > DIMENSIONS_COUNT_MAX
-        if (newColumnsCountIsNotValid) return
+        const newColumnsXRowsCountIsNotValid = newColumnsXRowsCount < DIMENSIONS_COUNT_MIN || newColumnsXRowsCount > DIMENSIONS_COUNT_MAX
+        if (newColumnsXRowsCountIsNotValid) return
 
         const newCanvasDimensions = structuredClone(canvasDimensions)
-        newCanvasDimensions.columnsCount = newColumnsCount
-
-        set({canvasDimensions : newCanvasDimensions})
-    },
-
-    setRowsCount : (newRowsCount) =>{
-        const {canvasDimensions} = get()
-
-        const newRowsCountIsNotValid = newRowsCount < DIMENSIONS_COUNT_MIN || newRowsCount > DIMENSIONS_COUNT_MAX
-        if (newRowsCountIsNotValid) return
-
-        const newCanvasDimensions = structuredClone(canvasDimensions)
-        newCanvasDimensions.rowsCount = newRowsCount
+        newCanvasDimensions.columnsCount = newColumnsXRowsCount
+        newCanvasDimensions.rowsCount = newColumnsXRowsCount
 
         set({canvasDimensions : newCanvasDimensions})
     },

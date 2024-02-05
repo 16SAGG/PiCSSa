@@ -1,4 +1,4 @@
-[
+export const palettes = [
     {
         "id": 0,
         "name": "Default",

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { palettes } from "../data/palettes.data";
 
 export const useColorsStore = create((set, get) =>({
     currentPalette : 0,
@@ -9,10 +10,8 @@ export const useColorsStore = create((set, get) =>({
         secondary : "transparent",
     },
 
-    fetchPalettesList : async () =>{
-        const res = await fetch(`http://localhost:5173/palettes.data.json`)
-        const palettesList = await res.json()
-
+    fetchPalettesList : () =>{
+        const palettesList = palettes
         set({palettesList})
     },
 

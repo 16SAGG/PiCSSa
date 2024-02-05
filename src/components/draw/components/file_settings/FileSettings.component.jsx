@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowsLeftRight, faArrowsRotate, faMagnifyingGlassMinus, faMagnifyingGlassPlus} from '@fortawesome/free-solid-svg-icons';
+import { faArrowsUpDownLeftRight, faArrowsRotate, faMagnifyingGlassMinus, faMagnifyingGlassPlus} from '@fortawesome/free-solid-svg-icons';
 
 import { Section } from 'clean-styled-components/src/styled-components/elements/Section.styled.element';
 import { Button } from 'clean-styled-components/src/styled-components/elements/Button.styled.element';
@@ -14,8 +14,7 @@ import { DropDownOptions } from '../drop_down_options/DropDownOptions.component'
 
 export const FileSettings = () => {
     const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
-    const setColumnsCount = useCanvasStore(state => state.setColumnsCount)
-    const setRowsCount = useCanvasStore(state => state.setRowsCount)
+    const setColumnsXRowsCount = useCanvasStore(state => state.setColumnsXRowsCount)
     const increasePixelSize = useCanvasStore(state => state.increasePixelSize)
     const reducePixelSize = useCanvasStore(state => state.reducePixelSize)
 
@@ -28,24 +27,13 @@ export const FileSettings = () => {
         type : 'numberInput', 
         value : canvasDimensions.columnsCount,
         onPlusPointerDown : () => {
-            setColumnsCount(canvasDimensions.columnsCount + 1)
+            setColumnsXRowsCount(canvasDimensions.columnsCount + 1)
             addAColumn()
-        },
-        onMinusPointerDown : () => {
-            setColumnsCount(canvasDimensions.columnsCount - 1)
-            removeAColumn()
-        },
-    }]
-
-    const setRowsOptions = [{
-        type : 'numberInput', 
-        value : canvasDimensions.rowsCount,
-        onPlusPointerDown : () => {
-            setRowsCount(canvasDimensions.rowsCount + 1)
             addARow()
         },
         onMinusPointerDown : () => {
-            setRowsCount(canvasDimensions.rowsCount - 1)
+            setColumnsXRowsCount(canvasDimensions.columnsCount - 1)
+            removeAColumn()
             removeARow()
         },
     }]
@@ -81,18 +69,10 @@ export const FileSettings = () => {
 
             <DropDownOptions
                 icon = {{
-                    value : faArrowsLeftRight,
+                    value : faArrowsUpDownLeftRight,
                     style : {},
                 }}
                 options = {setColumnsOptions}
-            />
-
-            <DropDownOptions
-                icon = {{
-                    value : faArrowsLeftRight,
-                    style : {transform: 'rotate(90deg)'},
-                }}
-                options = {setRowsOptions}
             />
             
             <Button
