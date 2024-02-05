@@ -18,7 +18,7 @@ import { FileName } from './components/file_name/FileName.component';
 import { FileSettings } from './components/file_settings/FileSettings.component';
 import { SelectedColors } from './components/selected_colors/SelectedColors.component';
 import { PixelArtCanvas } from './components/pixel_art_canvas/PixelArtCanvas.component';
-import { ConfirmationDialog } from './components/confirmation_dialog/confirmationDialog.component';
+import { ConfirmationDialog } from './components/confirmation_dialog/ConfirmationDialog.component';
 import { ExportDialog } from './components/export_dialog/ExportDialog.component';
 
 import { drawStaticProperties, headerStaticProperties, mainStaticProperties, leftColumnStaticProperties, rightColumnStaticProperties, centerColumnStaticProperties, leftColumnTopStaticProperties, leftColumnBottomStaticProperties } from './Draw.staticProperties';

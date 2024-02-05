@@ -11,38 +11,38 @@ import { dialogButton } from '../../../../styled-components/components/dialogBut
 import { buttonsContainerStaticProperties, confirmButtonStaticProperties, dialogContainerStaticProperties } from './ConfirmationDialog.staticProperties';
 
 export const ConfirmationDialog = ({id, text, confirmPointerDown, cancelPointerDown}) =>{
-    // const dialogContainerProperties = layout(dialogContainerStaticProperties)
-    // const buttonsContainerProperties = layout(buttonsContainerStaticProperties)
+    const dialogContainerProperties = layout(dialogContainerStaticProperties)
+    const buttonsContainerProperties = layout(buttonsContainerStaticProperties)
     
-    // const confirmButtonProperties = dialogButton(confirmButtonStaticProperties)
-    // const cancelButtonProperties = dialogButton({})
+    const confirmButtonProperties = dialogButton(confirmButtonStaticProperties)
+    const cancelButtonProperties = dialogButton({})
 
-    // return (
-    //     <Dialog
-    //         id = {id}
-    //         $properties = {dialogContainerProperties}
-    //     >
-    //         <P>{text}</P>
+    return (
+        <Dialog
+            id = {id}
+            $properties = {dialogContainerProperties}
+        >
+            <P>{text}</P>
 
-    //         <Div
-    //             $properties = {buttonsContainerProperties}
-    //         >
-    //             <Button
-    //                 onPointerDown = {confirmPointerDown}
-    //                 $properties = {confirmButtonProperties}
-    //             >
-    //                 Yes
-    //             </Button>
+            <Div
+                $properties = {buttonsContainerProperties}
+            >
+                <Button
+                    onPointerDown = {confirmPointerDown}
+                    $properties = {confirmButtonProperties}
+                >
+                    Yes
+                </Button>
                 
-    //             <Button
-    //                 onPointerDown = {cancelPointerDown}
-    //                 $properties = {cancelButtonProperties}
-    //             >
-    //                 Cancel
-    //             </Button>
-    //         </Div>
-    //     </Dialog>
-    // )
+                <Button
+                    onPointerDown = {cancelPointerDown}
+                    $properties = {cancelButtonProperties}
+                >
+                    Cancel
+                </Button>
+            </Div>
+        </Dialog>
+    )
 }
 
 ConfirmationDialog.propTypes = {
