@@ -5,7 +5,7 @@ import { Main } from 'clean-styled-components/src/styled-components/elements/Mai
 import { scroll } from '../../styled-components/components/scroll/scroll.styled.component';
 import { layout } from '../../styled-components/components/layout/layout.styled.component';
 
-import { useFramesStore } from '../../store/frames.store';
+//import { useFramesStore } from '../../store/frames.store';
 
 import { determineIfThereIsOverflow } from '../../utilities/determineIfThereIsOverflow';
 
@@ -18,13 +18,14 @@ import { FileName } from './components/file_name/FileName.component';
 import { FileSettings } from './components/file_settings/FileSettings.component';
 import { SelectedColors } from './components/selected_colors/SelectedColors.component';
 import { PixelArtCanvas } from './components/pixel_art_canvas/PixelArtCanvas.component';
-import { ConfirmationDialog } from './components/confirmation_dialog/confirmationDialog.component';
+//import { ConfirmationDialog } from './components/confirmation_dialog/confirmationDialog.component';
 import { ExportDialog } from './components/export_dialog/ExportDialog.component';
 
 import { drawStaticProperties, headerStaticProperties, mainStaticProperties, leftColumnStaticProperties, rightColumnStaticProperties, centerColumnStaticProperties, leftColumnTopStaticProperties, leftColumnBottomStaticProperties } from './Draw.staticProperties';
 
+
 export const Draw = () =>{
-    const resetProject = useFramesStore(state => state.resetProject)
+    //const resetProject = useFramesStore(state => state.resetProject)
     
     const modalClose = (id) =>{
         const modal = document.getElementById(id)
@@ -45,15 +46,7 @@ export const Draw = () =>{
 
     return(
         <>
-            <ConfirmationDialog
-                id = 'reset-confirmation-dialog'
-                text = 'Are you sure you want to reset the project?'
-                confirmPointerDown = {() => {
-                    resetProject()
-                    modalClose('reset-confirmation-dialog')
-                }}
-                cancelPointerDown = {() => modalClose('reset-confirmation-dialog')}
-            />
+        
 
             <ExportDialog
                 closePointerDown={() => modalClose('export-dialog')}
