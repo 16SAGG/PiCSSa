@@ -1,47 +1,63 @@
 import PropTypes from 'prop-types'
 
-import { Button } from 'clean-styled-components/src/styled-components/elements/Button.styled.element';
-import { Dialog } from 'clean-styled-components/src/styled-components/elements/Dialog.styled.element';
-import { Div } from 'clean-styled-components/src/styled-components/elements/Div.styled.element';
-import { P } from 'clean-styled-components/src/styled-components/elements/P.styled.element';
-
-import { layout } from '../../../../styled-components/components/layout/layout.styled.component';
-import { dialogButton } from '../../../../styled-components/components/dialogButton/dialogButton.styled.component';
-
-import { buttonsContainerStaticProperties, confirmButtonStaticProperties, dialogContainerStaticProperties } from './ConfirmationDialog.staticProperties';
-
 export const ConfirmationDialog = ({id, text, confirmPointerDown, cancelPointerDown}) =>{
-    const dialogContainerProperties = layout(dialogContainerStaticProperties)
-    const buttonsContainerProperties = layout(buttonsContainerStaticProperties)
-    
-    const confirmButtonProperties = dialogButton(confirmButtonStaticProperties)
-    const cancelButtonProperties = dialogButton({})
-
     return (
-        <Dialog
+        <dialog
             id = {id}
-            $properties = {dialogContainerProperties}
+            className='
+                bg-[rgb(31,31,31)]
+                text-[rgb(250,250,250)]
+                border-[rgb(250,250,250)]
+                border-[5px]
+                p-5
+            '
         >
-            <P>{text}</P>
-
-            <Div
-                $properties = {buttonsContainerProperties}
+            <div
+                className='
+                    flex
+                    flex-col
+                    gap-6
+                '
             >
-                <Button
-                    onPointerDown = {confirmPointerDown}
-                    $properties = {confirmButtonProperties}
+                <p>{text}</p>
+
+                <div
+                    className='
+                        flex
+                        space-x-10
+                        justify-center
+                    '
                 >
-                    Yes
-                </Button>
-                
-                <Button
-                    onPointerDown = {cancelPointerDown}
-                    $properties = {cancelButtonProperties}
-                >
-                    Cancel
-                </Button>
-            </Div>
-        </Dialog>
+                    <button
+                        onPointerDown = {confirmPointerDown}
+                        className='
+                            px-8
+                            text-[rgb(229,115,115)]
+                            duration-300
+
+                            hover:bg-[rgb(229,115,115)]
+                            hover:text-[rgb(31,31,31)]
+                        '
+                    >
+                        Yes
+                    </button>
+                    
+                    <button
+                        onPointerDown = {cancelPointerDown}
+                        className='
+                            px-8
+                            text-[rgb(250,250,250)]
+                            duration-300
+
+                            hover:bg-[rgb(250,250,250)]
+                            hover:text-[rgb(31,31,31)]
+                        '
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </dialog>
     )
 }
 
