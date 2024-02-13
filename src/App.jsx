@@ -2,7 +2,7 @@ import { Draw } from './components/draw/Draw.page'
 
 import { RoutesIndex } from './RoutesIndex'
 
-import './App.style.css'
+import './index.css'
 
 function App() {
   return (

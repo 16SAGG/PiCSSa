@@ -1,10 +1,3 @@
-import { Div } from 'clean-styled-components/src/styled-components/elements/Div.styled.element';
-import { Header } from 'clean-styled-components/src/styled-components/elements/Header.styled.element';
-import { Main } from 'clean-styled-components/src/styled-components/elements/Main.styled.element';
-
-import { scroll } from '../../styled-components/components/scroll/scroll.styled.component';
-import { layout } from '../../styled-components/components/layout/layout.styled.component';
-
 import { useFramesStore } from '../../store/frames.store';
 
 import { determineIfThereIsOverflow } from '../../utilities/determineIfThereIsOverflow';
@@ -21,8 +14,6 @@ import { PixelArtCanvas } from './components/pixel_art_canvas/PixelArtCanvas.com
 import { ConfirmationDialog } from './components/confirmation_dialog/ConfirmationDialog.component';
 import { ExportDialog } from './components/export_dialog/ExportDialog.component';
 
-import { drawStaticProperties, headerStaticProperties, mainStaticProperties, leftColumnStaticProperties, rightColumnStaticProperties, centerColumnStaticProperties, leftColumnTopStaticProperties, leftColumnBottomStaticProperties } from './Draw.staticProperties';
-
 export const Draw = () =>{
     const resetProject = useFramesStore(state => state.resetProject)
     
@@ -30,18 +21,6 @@ export const Draw = () =>{
         const modal = document.getElementById(id)
         modal.close()
     } 
-
-    const drawProperties = layout (drawStaticProperties);
-    const headerProperties =  layout(headerStaticProperties);
-    const mainProperties = layout(mainStaticProperties);
-    
-    const leftColumnProperties =  layout(leftColumnStaticProperties);
-    const leftColumnTopProperties = layout(leftColumnTopStaticProperties);
-    const leftColumnBottomProperties = layout(leftColumnBottomStaticProperties);
-
-    const rightColumnProperties = layout(rightColumnStaticProperties);
-
-    const centerColumnProperties = scroll(centerColumnStaticProperties);
 
     return(
         <>
@@ -59,38 +38,105 @@ export const Draw = () =>{
                 closePointerDown={() => modalClose('export-dialog')}
             />
 
-            <Div id = 'draw' $properties = {drawProperties}>
-                <Header id = 'draw-bar' $properties = {headerProperties}>
+            <div 
+                id = 'draw'
+                className='
+                    flex
+                    flex-col
+                    min-h-[100vh]
+                    max-h-[100vh]
+                    min-w-[100vw]
+                    max-w-[100vw]
+                    bg-[rgb(24,24,24)]
+                '
+            >
+                <header
+                    className ="
+                        flex
+                        min-h-[48px]
+                        bg-[rgb(31,31,31)]
+                        border-b-[1px]
+                        border-b-[rgba(250,250,250,0.05)]
+                    "
+                >
                     <FileExports/>
                     <FileName/>
                     <FileSettings/>
-                </Header>
+                </header>
 
-                <Main $properties = {mainProperties}>
-                    <Div id = 'left-column' $properties = {leftColumnProperties}>
-                        <Div id = 'left-column-top' $properties = {leftColumnTopProperties}>
+                <main 
+                    className='
+                        flex
+                        grow
+                        gap-[2px]
+                    '
+                >
+                    <div 
+                        id = 'left-column'
+                        className='
+                            flex
+                            flex-col
+                            bg-[rgb(31,31,31)]
+                            min-w-[98px]
+                            border-r-[1px]
+                            border-r-[rgba(250,250,250,0.05)]
+                        '
+                    >
+                        <div 
+                            id = 'left-column-top' 
+                            className='
+                                flex
+                                grow
+                            '
+                        >
                             <DrawTools/>
                             <ColorPalette/>
-                        </Div>
-                        <Div id = 'left-column-bottom' $properties = {leftColumnBottomProperties}>
+                        </div>
+                        <div 
+                            id = 'left-column-bottom' 
+                            className='
+                                flex
+                                min-h-[98px]
+                                items-center
+                                justify-center
+                            '
+                        >
                             <SelectedColors/>
-                        </Div>
-                    </Div>
+                        </div>
+                    </div>
 
-                    <Div 
+                    <div 
                         id = 'center-column'
                         onPointerDown = {(event) => event.preventDefault()}
-                        $properties = {centerColumnProperties}
+                        className='
+                            flex
+                            grow
+                            items-center
+                            justify-center
+                            my-[24px]
+                            max-h-[84.66vh]
+                            overflow-auto
+                        '
                     >
                         <PixelArtCanvas/>
-                    </Div>
+                    </div>
 
-                    <Div id = 'right-column' $properties = {rightColumnProperties}>
+                    <div 
+                        id = 'right-column' 
+                        className='
+                            flex
+                            flex-col
+                            bg-[rgb(24,24,24)]
+                            mw-[240px]
+                            border-l-[1px]
+                            border-l-[rgba(250,250,250,0.05)]
+                        '
+                    >
                         <AnimationPreviewer/>
                         <AnimationFrames/>
-                    </Div>
-                </Main>
-            </Div>
+                    </div>
+                </main>
+            </div>
         </>
     );
 }
