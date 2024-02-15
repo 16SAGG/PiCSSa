@@ -1,25 +1,28 @@
 import PropTypes from 'prop-types';
 
-import { Button } from "clean-styled-components/src/styled-components/elements/Button.styled.element"
-import { Li } from "clean-styled-components/src/styled-components/elements/Li.styled.element"
-
-import { iconButton } from "../../../../../../../../styled-components/components/iconButton/iconButton.styled.component"
-
-import { buttonStaticProperties } from "./DropButton.staticProperties"
-
 export const DropButton = ({value, onPointerDown}) =>{
-    
-    const buttonProperties = iconButton(buttonStaticProperties)
-
     return(
-        <Li>
-            <Button
+        <li>
+            <button
                 onPointerDown = {onPointerDown}
-                $properties = {buttonProperties}
+                className='
+                    flex
+                    items-center
+                    text-center
+                    min-w-[144px]
+                    min-h-[24px]
+                    pl-[12px]
+                    text-[rgba(250,250,250,0.5)]
+                    bg-[rgb(31,31,31)]
+                    duration-300
+
+                    hover:bg-[rgb(255,183,77)]
+                    hover:text-[rgb(31,31,31)]
+                '
             >
                 {value}
-            </Button>
-        </Li>
+            </button>
+        </li>
     )
 }
 

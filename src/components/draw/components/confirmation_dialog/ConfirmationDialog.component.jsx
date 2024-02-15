@@ -7,8 +7,8 @@ export const ConfirmationDialog = ({id, text, confirmPointerDown, cancelPointerD
             className='
                 bg-[rgb(31,31,31)]
                 text-[rgb(250,250,250)]
-                border-[rgb(250,250,250)]
-                border-[5px]
+                border-2
+                border-[rgba(250,250,250,0.05)]
                 p-5
             '
         >

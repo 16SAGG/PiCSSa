@@ -1,12 +1,6 @@
 import { faCss3Alt } from '@fortawesome/free-brands-svg-icons';
 
-import { Section } from 'clean-styled-components/src/styled-components/elements/Section.styled.element';
-
-import { layout } from '../../../../styled-components/components/layout/layout.styled.component';
-
 import { DropDownOptions } from '../drop_down_options/DropDownOptions.component';
-
-import { fileExportsStaticProperties } from './FileExports.staticProperties';
 
 export const FileExports= () =>{
 
@@ -32,10 +26,13 @@ export const FileExports= () =>{
         },
     ]
 
-    const fileExportProperties = layout(fileExportsStaticProperties);
-
     return(
-        <Section id = 'file-exports' $properties = {fileExportProperties}>
+        <section 
+            id = 'file-exports'
+            className='
+                min-w-[90px]
+            '
+        >
             <DropDownOptions
                 icon = {{
                     value : faCss3Alt,
@@ -44,6 +41,6 @@ export const FileExports= () =>{
 
                 options={setExportsOptions}
             />
-        </Section>
+        </section>
     );
 }

@@ -3,23 +3,13 @@ import PropTypes from 'prop-types'
 
 import { faX} from '@fortawesome/free-solid-svg-icons';
 
-import { Dialog } from 'clean-styled-components/src/styled-components/elements/Dialog.styled.element';
-import { Header } from 'clean-styled-components/src/styled-components/elements/Header.styled.element';
-import { Div } from 'clean-styled-components/src/styled-components/elements/Div.styled.element';
-import { Button } from 'clean-styled-components/src/styled-components/elements/Button.styled.element';
-
-import { layout } from '../../../../styled-components/components/layout/layout.styled.component';
-import { iconButton } from '../../../../styled-components/components/iconButton/iconButton.styled.component';
-
-import { RangeInput } from '../range_input/RangeInput.component';
 import { convertPixelArtAnimationToCSS, convertPixelArtSingleToCSS } from '../../../../utilities/convertPixelArtToCSS';
 import { useFramesStore } from '../../../../store/frames.store';
 import { useFileStore } from '../../../../store/file.store';
 import { useAnimationStore } from '../../../../store/animation.store';
 
-import { exportDialogContainerStaticProperties, exportDialogStaticProperties } from './ExportDialog.staticProperties';
-import { dialogButton } from '../../../../styled-components/components/dialogButton/dialogButton.styled.component';
-import { size } from '../../../../themes';
+import { FlatButton } from '../../../tailwindComponents/flatButton';
+import { RangeInput } from '../../../tailwindComponents/RangeInput';
 
 export const ExportDialog = ({
     closePointerDown = () =>{},
@@ -53,35 +43,66 @@ export const ExportDialog = ({
         }
     }
 
-    const exportDialogProperties = layout(exportDialogStaticProperties)
-    const exportDialogContainerProperties = layout(exportDialogContainerStaticProperties)
-
     return (
-        <Dialog id = 'export-dialog' $properties = {exportDialogProperties}>
-            <Div $properties = {exportDialogContainerProperties}>
-                <Header $properties = {layout({$display : 'flex'})}>
-                    <Div $properties = {layout({$flexGrow : 1})}></Div>
-                    <Button 
+        <dialog 
+            id = 'export-dialog'
+            className='
+                bg-[rgb(31,31,31)]
+                text-[rgb(250,250,250)]
+                border-2
+                border-[rgba(250,250,250,0.05)]
+                p-5
+            '
+        >
+            <div 
+                className='
+                    flex
+                    flex-col
+                    gap-[24px]
+                    min-w-[246px]
+                    min-h-[70vh]
+
+                    md:min-w-[40vw]
+                '
+            >
+                <header 
+                    className='
+                        flex
+                    '
+                >
+                    <div
+                        className='grow'
+                    ></div>
+                    <FlatButton 
                         onPointerDown = {closePointerDown}
-                        $properties = {iconButton({})}
-                    >
-                        <FontAwesomeIcon icon={faX}/>
-                    </Button>
-                </Header>
-                <Div $properties = {layout({$display : 'flex', $gap : '12px', $flexDirection : 'column'})}>
-                    <RangeInput
-                        value = {pixelSizeExport}
-                        setValue = {setPixelSizeExport}
-                        textContent = {`SCALE: x${pixelSizeExport}`}
-                        textMinWidth = {`${parseFloat(size.box)*2}px`}
+                        content={<FontAwesomeIcon icon={faX}/>}
                     />
-                    <Button 
+                </header>
+                <div 
+                    className ='
+                        flex
+                        flex-col
+                        gap-[12px]
+                    '
+                >
+                    <RangeInput
+                        inputValue = {pixelSizeExport}
+                        setInputValue = {setPixelSizeExport}
+                        textContent = {`SCALE: x${pixelSizeExport}`}
+                    />
+                    <button
                         onPointerDown = {copyPointerDown}
-                        $properties = {dialogButton({})}
+                        className='
+                            bg-transparent
+                            p-1
+                            duration-300
+
+                            hover:bg-[rgb(20,20,20)]
+                        '
                     >
                         Copy
-                    </Button>
-                </Div>
+                    </button>
+                </div>
                 <textarea
                     id = 'export-area'
                     readOnly
@@ -92,11 +113,10 @@ export const ExportDialog = ({
                             convertPixelArtSingleToCSS(framesList[currentFrame], fileName, pixelSizeExport)
                     }
                 ></textarea>
-            </Div>
-        </Dialog>
+            </div>
+        </dialog>
     )
 }
-
 
 ExportDialog.propTypes = {
     closePointerDown : PropTypes.func,

@@ -3,42 +3,78 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus} from '@fortawesome/free-solid-svg-icons';
 
-import { Li } from "clean-styled-components/src/styled-components/elements/Li.styled.element"
-import { Div } from "clean-styled-components/src/styled-components/elements/Div.styled.element"
-import { Button } from "clean-styled-components/src/styled-components/elements/Button.styled.element"
-
-import { iconButton } from "../../../../../../../../styled-components/components/iconButton/iconButton.styled.component"
-import { layout } from "../../../../../../../../styled-components/components/layout/layout.styled.component"
-import { text } from '../../../../../../../../styled-components/components/text/text.styled.component';
-
-import { buttonContainerStaticProperties, buttonStaticProperties, numberDisplayerStaticProperties, numberInputContainerStaticProperties } from './DropNumberInput.staticProperties';
-
 export const DropNumberInput = ({
     value = 0, 
     onPlusPointerDown = () =>{},
     onMinusPointerDown = () =>{},
 }) =>{
-    const numberInputContainerProperties = layout(numberInputContainerStaticProperties)
-    const numberDisplayerProperties = layout(numberDisplayerStaticProperties)
-    const buttonContainerProperties = layout(buttonContainerStaticProperties)
-    const buttonProperties = iconButton(buttonStaticProperties)
 
     return(
-        <Li $properties = {numberInputContainerProperties}>
-            <Div 
-                $properties = {numberDisplayerProperties}
+        <li 
+            className='
+                flex
+                border-none
+                min-h-[48px]
+                min-w-[72px]
+            '
+        >
+            <div 
+                className='
+                    flex
+                    text-center
+                    p-0
+                    grow
+                    items-center
+                    justify-center
+                    border-2
+                    border-[rgb(31,31,31)]
+                '
             >
-                <Div $properties = {text({})}>{value}</Div>
-            </Div>
-            <Div $properties = {buttonContainerProperties}>
-                <Button onPointerDown = {onPlusPointerDown} $properties = {buttonProperties}>
+                <div
+                    className='
+                        text-[rgb(250,250,250)]
+                        
+                    '
+                >
+                    {value}
+                </div>
+            </div>
+            <div
+                className='
+                    flex
+                    flex-col
+                '
+            >
+                <button
+                    onPointerDown = {onPlusPointerDown}
+                    className='
+                        bg-[rgb(31,31,31)]
+                        text-[rgba(250,250,250,0.5)]
+                        min-w-[24px]
+                        min-h-[24px]
+
+                        hover:bg-[rgb(255,183,77)]
+                        hover:text-[rgb(31,31,31)]
+                    '
+                >
                     <FontAwesomeIcon icon={faPlus} className = "fa-sm"/>
-                </Button>
-                <Button onPointerDown = {onMinusPointerDown} $properties = {buttonProperties}>
+                </button>
+                <button
+                    onPointerDown = {onMinusPointerDown} 
+                    className='
+                        bg-[rgb(31,31,31)]
+                        text-[rgba(250,250,250,0.5)]
+                        min-w-[24px]
+                        min-h-[24px]
+
+                        hover:bg-[rgb(255,183,77)]
+                        hover:text-[rgb(31,31,31)]
+                    '
+                >
                     <FontAwesomeIcon icon={faMinus}/>
-                </Button>
-            </Div>
-        </Li>
+                </button>
+            </div>
+        </li>
     )
 }
 

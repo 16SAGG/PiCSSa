@@ -1,16 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowsUpDownLeftRight, faArrowsRotate, faMagnifyingGlassMinus, faMagnifyingGlassPlus} from '@fortawesome/free-solid-svg-icons';
 
-import { Section } from 'clean-styled-components/src/styled-components/elements/Section.styled.element';
-import { Button } from 'clean-styled-components/src/styled-components/elements/Button.styled.element';
-
 import { useCanvasStore } from '../../../../store/canvas.store';
 import { useFramesStore } from '../../../../store/frames.store';
 
-import { iconButton } from '../../../../styled-components/components/iconButton/iconButton.styled.component';
-import { layout } from '../../../../styled-components/components/layout/layout.styled.component';
-
 import { DropDownOptions } from '../drop_down_options/DropDownOptions.component';
+import { FlatButton } from '../../../tailwindComponents/flatButton';
 
 export const FileSettings = () => {
     const canvasDimensions = useCanvasStore(state => state.canvasDimensions)
@@ -38,6 +33,48 @@ export const FileSettings = () => {
         },
     }]
 
+    const minimalSettingsOptions = [
+        {
+            type: 'button',
+            value: 'Zoom In',
+            onPointerDown: () => increasePixelSize(),
+        },
+        {
+            type: 'button',
+            value: 'Zoom Out',
+            onPointerDown: () => reducePixelSize(),
+        },
+        {
+            type: 'break',
+        },
+        {
+            type: 'button',
+            value: 'More Pixels',
+            onPointerDown: () => {
+                setColumnsXRowsCount(canvasDimensions.columnsCount + 1)
+                addAColumn()
+                addARow()
+            },
+        },
+        {
+            type: 'button',
+            value: 'Less Pixels',
+            onPointerDown: () => {
+                setColumnsXRowsCount(canvasDimensions.columnsCount - 1)
+                removeAColumn()
+                removeARow()
+            },
+        },
+        {
+            type: 'break',
+        },
+        {
+            type: 'button',
+            value: 'Reset',
+            onPointerDown: () => showResetConfirmationDialog(),
+        },
+    ]
+
     const showResetConfirmationDialog = () =>{
         const resetConfirmationDialog = document.getElementById('reset-confirmation-dialog')
         const resetConfirmationDialogExist = resetConfirmationDialog != null
@@ -45,42 +82,58 @@ export const FileSettings = () => {
         if(resetConfirmationDialogExist) resetConfirmationDialog.showModal()
     }
 
-    const fileSettingsProperties = layout({$display : 'flex'})
-    const buttonProperties = iconButton({});
-
     return (
-        <Section 
-            id = 'file-settings'
-            $properties = {fileSettingsProperties}
-        >
-            <Button 
-                onPointerDown = {() => increasePixelSize()}
-                $properties = {buttonProperties}
-            >
-                <FontAwesomeIcon icon={faMagnifyingGlassPlus}/>
-            </Button>
+        <>
+            <section 
+                id = 'file-settings'
+                className='
+                    hidden
 
-            <Button 
-                onPointerDown = {() => reducePixelSize()}
-                $properties = {buttonProperties}
+                    md:flex
+                '
             >
-                <FontAwesomeIcon icon = {faMagnifyingGlassMinus}/>
-            </Button>
+                <FlatButton
+                    onPointerDown={() => increasePixelSize()}
+                    content={<FontAwesomeIcon icon={faMagnifyingGlassPlus}/>}
+                />
+                <FlatButton
+                    onPointerDown={() => reducePixelSize()}
+                    content={<FontAwesomeIcon icon = {faMagnifyingGlassMinus}/>}
+                />
+                <DropDownOptions
+                    icon = {{
+                        value : faArrowsUpDownLeftRight,
+                        style : {},
+                    }}
+                    options = {setColumnsOptions}
+                />
+                <FlatButton
+                    onPointerDown={() => showResetConfirmationDialog()}
+                    content={<FontAwesomeIcon icon = {faArrowsRotate} />}
+                />
+            </section>
+            <section
+                className='
+                    flex
+                    min-w-[90px]
 
-            <DropDownOptions
-                icon = {{
-                    value : faArrowsUpDownLeftRight,
-                    style : {},
-                }}
-                options = {setColumnsOptions}
-            />
-            
-            <Button
-                onPointerDown = {() => showResetConfirmationDialog()} 
-                $properties = {buttonProperties}
+                    md:hidden
+                '
             >
-                <FontAwesomeIcon icon = {faArrowsRotate} />
-            </Button>
-        </Section>
+                <div
+                    className='
+                        grow
+                    '
+                ></div>
+                <DropDownOptions
+                    icon = {{
+                        value : faArrowsUpDownLeftRight,
+                        style : {},
+                    }}
+                    options = {minimalSettingsOptions}
+                    directionLeft = {true}
+                />
+            </section>
+        </>
     )
 }
